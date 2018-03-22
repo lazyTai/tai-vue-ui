@@ -13,5 +13,5 @@ return [
     '__pattern__' => [
         'name' => '\w+',
     ],
-    "/" => "/shop/public/index",
+    "/" => "/tai-vue-ui/public/index",
 ];

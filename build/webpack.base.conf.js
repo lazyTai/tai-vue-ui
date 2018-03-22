@@ -2,6 +2,8 @@ var path = require('path')
 
 module.exports = {
     entry: {
+        tv:path.resolve(__dirname,
+            '../application/index/view/components/tai.js'),
         index: path.resolve(__dirname,
             '../application/index/view/index/index.js'),
 

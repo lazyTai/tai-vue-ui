@@ -1903,6 +1903,38 @@ exports.default = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /***/ }),
 /* 23 */
@@ -2091,42 +2123,150 @@ var render = function() {
                 _c(
                   "t-grid-item",
                   [
-                    _c("t-icon", { attrs: { icon: "" } }),
+                    _c("t-icon", { attrs: { icon: "anniu", size: "44" } }),
                     _vm._v(" "),
                     _c("div", [_vm._v("button")])
                   ],
                   1
                 ),
                 _vm._v(" "),
-                _c("t-grid-item", [
-                  _c("div", [_vm._v("2")]),
-                  _vm._v(" "),
-                  _c("div", [_vm._v("shit")])
-                ]),
+                _c(
+                  "t-grid-item",
+                  [
+                    _c("t-icon", {
+                      attrs: { icon: "duihuakuang", size: "44" }
+                    }),
+                    _vm._v(" "),
+                    _c("div", [_vm._v("dialog")])
+                  ],
+                  1
+                ),
                 _vm._v(" "),
-                _c("t-grid-item", [
-                  _c("div", [_vm._v("3")]),
-                  _vm._v(" "),
-                  _c("div", [_vm._v("shit")])
-                ]),
+                _c(
+                  "t-grid-item",
+                  [
+                    _c("t-icon", { attrs: { icon: "icon-test2", size: "44" } }),
+                    _vm._v(" "),
+                    _c("div", [_vm._v("icon")])
+                  ],
+                  1
+                ),
                 _vm._v(" "),
-                _c("t-grid-item", [
-                  _c("div", [_vm._v("1")]),
-                  _vm._v(" "),
-                  _c("div", [_vm._v("shit")])
-                ]),
+                _c(
+                  "t-grid-item",
+                  [
+                    _c("t-icon", { attrs: { icon: "grids", size: "44" } }),
+                    _vm._v(" "),
+                    _c("div", [_vm._v("Grids")])
+                  ],
+                  1
+                ),
                 _vm._v(" "),
-                _c("t-grid-item", [
-                  _c("div", [_vm._v("2")]),
-                  _vm._v(" "),
-                  _c("div", [_vm._v("shit")])
-                ]),
+                _c(
+                  "t-grid-item",
+                  [
+                    _c("t-icon", { attrs: { icon: "symbols", size: "44" } }),
+                    _vm._v(" "),
+                    _c("div", [_vm._v("List")])
+                  ],
+                  1
+                ),
                 _vm._v(" "),
-                _c("t-grid-item", [
-                  _c("div", [_vm._v("3")]),
-                  _vm._v(" "),
-                  _c("div", [_vm._v("shit")])
-                ])
+                _c(
+                  "t-grid-item",
+                  [
+                    _c("t-icon", { attrs: { icon: "nav", size: "44" } }),
+                    _vm._v(" "),
+                    _c("div", [_vm._v("nav")])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "t-grid-item",
+                  [
+                    _c("t-icon", { attrs: { icon: "tabs", size: "44" } }),
+                    _vm._v(" "),
+                    _c("div", [_vm._v("tab")])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "t-grid-item",
+                  [
+                    _c("t-icon", {
+                      attrs: { icon: "iconset0497", size: "44" }
+                    }),
+                    _vm._v(" "),
+                    _c("div", [_vm._v("actionSheet")])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "t-grid-item",
+                  [
+                    _c("t-icon", { attrs: { icon: "jindutiao", size: "44" } }),
+                    _vm._v(" "),
+                    _c("div", [_vm._v("进度条")])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "t-grid-item",
+                  [
+                    _c("t-icon", { attrs: { icon: "slider", size: "44" } }),
+                    _vm._v(" "),
+                    _c("div", [_vm._v("图片silder")])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "t-grid-item",
+                  [
+                    _c("t-icon", {
+                      attrs: { icon: "chengshijianshe", size: "44" }
+                    }),
+                    _vm._v(" "),
+                    _c("div", [_vm._v("城市选择")])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "t-grid-item",
+                  [
+                    _c("t-icon", { attrs: { icon: "heart-copy", size: "44" } }),
+                    _vm._v(" "),
+                    _c("div", [_vm._v("等级")])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "t-grid-item",
+                  [
+                    _c("t-icon", {
+                      attrs: { icon: "lianxiangshuru", size: "44" }
+                    }),
+                    _vm._v(" "),
+                    _c("div", [_vm._v("输入")])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "t-grid-item",
+                  [
+                    _c("t-icon", { attrs: { icon: "404", size: "44" } }),
+                    _vm._v(" "),
+                    _c("div", [_vm._v("布局")])
+                  ],
+                  1
+                )
               ],
               1
             )
@@ -6951,7 +7091,18 @@ exports.default = {
   name: "t-icon",
   props: {
     icon: String,
-    spin: Boolean
+    spin: Boolean,
+    size: {
+      type: String || Number
+    }
+  },
+  computed: {
+    style: function style() {
+      var self = this;
+      return {
+        fontSize: self.$props.size + "px"
+      };
+    }
   }
 };
 
@@ -6964,7 +7115,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { style: _vm.style }, [
     _c("svg", { staticClass: "icon", attrs: { "aria-hidden": "true" } }, [
       _c("use", { attrs: { "xlink:href": "#icon-" + _vm.icon } })
     ])

@@ -947,7 +947,18 @@ exports.default = {
   name: "t-icon",
   props: {
     icon: String,
-    spin: Boolean
+    spin: Boolean,
+    size: {
+      type: String || Number
+    }
+  },
+  computed: {
+    style: function style() {
+      var self = this;
+      return {
+        fontSize: self.$props.size + "px"
+      };
+    }
   }
 };
 
@@ -960,7 +971,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { style: _vm.style }, [
     _c("svg", { staticClass: "icon", attrs: { "aria-hidden": "true" } }, [
       _c("use", { attrs: { "xlink:href": "#icon-" + _vm.icon } })
     ])

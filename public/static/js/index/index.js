@@ -3449,6 +3449,7 @@ var _tai2 = _interopRequireDefault(_tai);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.use(_tai2.default);
+
 var routes = [{
     path: '/app', component: _app2.default
 }, {

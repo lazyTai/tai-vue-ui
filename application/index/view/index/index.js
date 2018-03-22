@@ -6,6 +6,7 @@ import { store } from './vuex/store'
 
 import Tai from '../components/tai.js'
 Vue.use(Tai)
+
 const routes = [
     {
         path: '/app', component: App,

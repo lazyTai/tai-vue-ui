@@ -1,10 +1,11 @@
 <template>
-    <div>
-        <t-layout>
-           
-
-        </t-layout>
-    </div>
+  <div>
+    <t-layout>
+      <div slot="top">1</div>
+      <div>hello</div>
+      <div slot="bottom">1</div>
+    </t-layout>
+  </div>
 </template>
 <script>
 import Vue from "vue";
@@ -20,7 +21,6 @@ export default {
       var self = this;
     }
   },
-  components: {
-  }
+  components: {}
 };
 </script>

@@ -7,8 +7,10 @@
       <div>
         <t-grid-group :row="3">
           <t-grid-item>
-            <t-icon icon="anniu" size='44' />
-            <div>button</div>
+            <router-link to="button">
+              <t-icon icon="anniu" size='44' />
+              <div>button</div>
+            </router-link>
           </t-grid-item>
           <t-grid-item>
             <t-icon icon="duihuakuang" size='44' />

@@ -1,15 +1,10 @@
 <template>
     <div class="t-layout">
-        <div class="top">
-            <slot name="top"></slot>
-        </div>
+        <slot name="top"></slot>
         <div class="center">
             <slot></slot>
         </div>
-        <div class="botom">
-            <slot name="bottom"></slot>
-        </div>
-
+        <slot name="bottom"></slot>
     </div>
 </template>
 <script>
@@ -18,5 +13,26 @@ export default {
 };
 </script>
 <style lang="less">
-@import "./layout.less";
+@import "../less_comm/var.less";
+.@{css-prefix} {
+  &-layout {
+    margin: 0 auto;
+    max-width: 720px;
+    min-width: 200px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .top {
+      height: 40px;
+      background: #eee;
+    }
+    .center {
+      flex: 1;
+    }
+    .botom {
+      height: 40px;
+      background: #eee;
+    }
+  }
+}
 </style>

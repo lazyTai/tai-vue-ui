@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"C:\phpStudy\WWW\tai-vue-ui\public/../application/index\view\index\index.html";i:1521703195;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"C:\phpStudy\WWW\tai-vue-ui\public/../application/index\view\index\index.html";i:1521704509;}*/ ?>
 <html lang="en">
 
 <head>
@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="/tai-vue-ui/public/static/common/tai.png" type="image/x-icon" />
-    <title>  tai-vue-ui(tv)组件</title>
+    <title> tai-vue-ui(tv)组件</title>
 </head>
 
 <body>
@@ -35,6 +35,11 @@
             vertical-align: -0.15em;
             fill: currentColor;
             overflow: hidden;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
         }
     </style>
 </body>

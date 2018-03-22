@@ -11,9 +11,14 @@ const routes = [
         path: '/app', component: App,
     },
     {
+        path: '/button',
+        component: require('./example/button').default
+    },
+    {
         path: '/',
         redirect: '/app'
     },
+
 ]
 var router = new VueRouter({
     routes

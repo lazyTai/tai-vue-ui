@@ -1,0 +1,21 @@
+@import '../less_comm/var';
+.@{css-prefix} {
+    &-header-back {
+        display: flex;
+        align-items: center;
+        height: @nav_height;
+        color: @color_white;
+        background: @color_bg_nav;
+        .left {
+            width: 50px;
+            cursor: pointer;
+        }
+        .right {
+            width: 50px;
+        }
+        .center {
+            flex: 1;
+            text-align: center;
+        }
+    }
+}

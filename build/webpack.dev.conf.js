@@ -74,7 +74,7 @@ let webpackConfig = {
         ]
     },
     plugins: [
-        commonsChunkPlugin,
+        // commonsChunkPlugin,
         new ExtractTextPlugin({
             filename: '[name]/[name].css'
         }),

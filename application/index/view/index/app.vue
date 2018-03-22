@@ -7,14 +7,16 @@
       <div>
         <t-grid-group :row="3">
           <t-grid-item>
-            <router-link to="button">
+            <router-link to="/button">
               <t-icon icon="anniu" size='44' />
               <div>button</div>
             </router-link>
           </t-grid-item>
           <t-grid-item>
-            <t-icon icon="duihuakuang" size='44' />
-            <div>dialog</div>
+            <router-link to="/dialog">
+              <t-icon icon="duihuakuang" size='44' />
+              <div>dialog</div>
+            </router-link>
           </t-grid-item>
           <t-grid-item>
             <t-icon icon="icon-test2" size='44' />
@@ -27,6 +29,13 @@
           <t-grid-item>
             <t-icon icon="symbols" size='44' />
             <div>List</div>
+          </t-grid-item>
+          <t-grid-item>
+            <router-link to="/nostop_list">
+              <t-icon icon="symbols" size='44' />
+              <div>无限加载列表</div>
+            </router-link>
+
           </t-grid-item>
           <t-grid-item>
             <t-icon icon="nav" size='44' />

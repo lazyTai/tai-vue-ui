@@ -3,7 +3,8 @@ import { HeaderBack } from './header/index.js';
 import { Icon } from './icon/index.js';
 import { GridGroup, GridItem } from './grid/index.js';
 import { Button, ButtonGroup, IconButton } from './button/index.js';
-
+import {Toast} from './dialog/index'
+import {InfiniteScroll} from './infiniteScroll/index'
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
 }, false);
@@ -17,6 +18,8 @@ const install = function (Vue) {
     Vue.component(Button.name, Button);
     Vue.component(ButtonGroup.name, ButtonGroup);
     Vue.component(IconButton.name, IconButton);
+    Vue.component(InfiniteScroll.name, InfiniteScroll);
+    Vue.prototype.$toast=Toast;
 };
 
 if (typeof window !== 'undefined' && window.Vue) {

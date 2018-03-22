@@ -16,6 +16,14 @@ const routes = [
         component: require('./example/button').default
     },
     {
+        path: '/dialog',
+        component: require('./example/dialog').default
+    },
+    {
+        path: '/nostop_list',
+        component: require('./example/nostoplist').default
+    },
+    {
         path: '/',
         redirect: '/app'
     },

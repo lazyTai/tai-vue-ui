@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"D:\phpStudy\WWW\tai-vue-ui\public/../application/index\view\index\index.html";i:1521681210;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"D:\phpStudy\WWW\tai-vue-ui\public/../application/index\view\index\index.html";i:1521716877;}*/ ?>
 <html lang="en">
 
 <head>
@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="/tai-vue-ui/public/static/common/tai.png" type="image/x-icon" />
-    <title>二手交易</title>
+    <title> tai-vue-ui(tv)组件</title>
 </head>
 
 <body>
@@ -24,9 +24,9 @@
     <script src="/tai-vue-ui/public/static/js/vue.js"></script>
     <script src="/tai-vue-ui/public/static/js/ajax.js"></script>
     <script src="/tai-vue-ui/public/static/js/ajaxform.js"></script>
-    <script src="/tai-vue-ui/public/static/js/commons.bundle.js"></script>
+    <!-- <script src="/tai-vue-ui/public/static/js/tv/tv.js"></script> -->
     <script src="/tai-vue-ui/public/static/js/index/index.js"></script>
-    <script src="//at.alicdn.com/t/font_391938_h228rnh1pmohia4i.js"></script>
+    <script src="//at.alicdn.com/t/font_391938_213c7sf0zsdwvcxr.js"></script>
 
     <style>
         .icon {
@@ -35,6 +35,11 @@
             vertical-align: -0.15em;
             fill: currentColor;
             overflow: hidden;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
         }
     </style>
 </body>

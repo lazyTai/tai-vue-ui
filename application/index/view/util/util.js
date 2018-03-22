@@ -55,3 +55,16 @@ export function changeCursorPos(dom, pos) {
 
 
 }
+
+export function getScrollview(el){
+    var currentNode = el;
+    var overflowY = document.defaultView.getComputedStyle(currentNode).overflowY;
+    if(currentNode.tagName !== 'HTML' && currentNode.tagName !== 'BODY'){
+        return currentNode
+    }
+    if (overflowY === 'scroll' || overflowY === 'auto') {
+        return currentNode;
+    }else{
+        return getScrollview(currentNode.parentNode);
+    }
+}

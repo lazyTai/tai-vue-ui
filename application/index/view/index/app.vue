@@ -33,9 +33,8 @@
           <t-grid-item>
             <router-link to="/nostop_list">
               <t-icon icon="symbols" size='44' />
-              <div>无限加载列表</div>
             </router-link>
-
+            <div>无限加载列表</div>
           </t-grid-item>
           <t-grid-item>
             <t-icon icon="nav" size='44' />

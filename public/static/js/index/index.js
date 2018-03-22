@@ -3393,7 +3393,6 @@ exports.default = {
 //
 //
 //
-//
 
 /***/ }),
 /* 56 */
@@ -3707,14 +3706,12 @@ var render = function() {
                       "router-link",
                       { attrs: { to: "/nostop_list" } },
                       [
-                        _c("t-icon", {
-                          attrs: { icon: "symbols", size: "44" }
-                        }),
-                        _vm._v(" "),
-                        _c("div", [_vm._v("无限加载列表")])
+                        _c("t-icon", { attrs: { icon: "symbols", size: "44" } })
                       ],
                       1
-                    )
+                    ),
+                    _vm._v(" "),
+                    _c("div", [_vm._v("无限加载列表")])
                   ],
                   1
                 ),
@@ -9140,6 +9137,10 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
 
 exports.default = {
   data: function data() {
@@ -9223,11 +9224,19 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "t-nostop-list",
-    { attrs: { height: 400, callback: _vm.callback } },
-    _vm._l(_vm.lists, function(n) {
-      return _c("div", { key: n }, [_c("div", [_vm._v(_vm._s(n))])])
-    })
+    "t-layout",
+    [
+      _c("t-header-back", { attrs: { title: "无限加载" } }),
+      _vm._v(" "),
+      _c(
+        "t-nostop-list",
+        { attrs: { height: 400, callback: _vm.callback } },
+        _vm._l(_vm.lists, function(n) {
+          return _c("div", { key: n }, [_c("div", [_vm._v(_vm._s(n))])])
+        })
+      )
+    ],
+    1
   )
 }
 var staticRenderFns = []

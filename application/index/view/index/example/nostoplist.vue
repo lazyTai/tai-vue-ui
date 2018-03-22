@@ -1,9 +1,13 @@
 <template>
-    <t-nostop-list :height="400" :callback="callback">
-        <div v-for="n in lists" :key="n">
-            <div>{{n}}</div>
-        </div>
-    </t-nostop-list>
+    <t-layout>
+        <t-header-back title="无限加载"></t-header-back>
+        <t-nostop-list :height="400" :callback="callback">
+            <div v-for="n in lists" :key="n">
+                <div>{{n}}</div>
+            </div>
+        </t-nostop-list>
+    </t-layout>
+
 </template>
 <script>
 export default {

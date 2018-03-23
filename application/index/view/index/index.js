@@ -24,6 +24,14 @@ const routes = [
         component: require('./example/nostoplist').default
     },
     {
+        path: '/nostop_list',
+        component: require('./example/nostoplist').default
+    },
+    {
+        path: '/pick',
+        component: require('./example/pick').default
+    },
+    {
         path: '/',
         redirect: '/app'
     },

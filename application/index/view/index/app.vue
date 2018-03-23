@@ -73,6 +73,13 @@
             <div>布局</div>
           </t-grid-item>
 
+          <t-grid-item>
+            <router-link to="/pick">
+              <t-icon icon="404" size='44' />
+              <div>pick</div>
+            </router-link>
+          </t-grid-item>
+
         </t-grid-group>
 
       </div>

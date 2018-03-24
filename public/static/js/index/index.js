@@ -3635,6 +3635,8 @@ var _index8 = __webpack_require__(95);
 
 var _index9 = __webpack_require__(100);
 
+var _index10 = __webpack_require__(169);
+
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
 }, false);
@@ -3654,6 +3656,9 @@ var install = function install(Vue) {
     Vue.component(_index7.DatePicker.name, _index7.DatePicker);
     Vue.component(_index8.DateTimePicker.name, _index8.DateTimePicker);
     Vue.component(_index9.Swiper.name, _index9.Swiper);
+    Vue.component(_index6.InfiniteScroll2.name, _index6.InfiniteScroll2);
+    Vue.component(_index10.Loading.name, _index10.Loading);
+
     Vue.prototype.$toast = _index5.Toast;
     Vue.prototype.$mark = _mark.Mark;
 };
@@ -4982,15 +4987,20 @@ if (false) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.InfiniteScroll = undefined;
+exports.InfiniteScroll2 = exports.InfiniteScroll = undefined;
 
 var _infiniteScroll = __webpack_require__(68);
 
 var _infiniteScroll2 = _interopRequireDefault(_infiniteScroll);
 
+var _infiniteScroll3 = __webpack_require__(161);
+
+var _infiniteScroll4 = _interopRequireDefault(_infiniteScroll3);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.InfiniteScroll = _infiniteScroll2.default;
+exports.InfiniteScroll2 = _infiniteScroll4.default;
 
 /***/ }),
 /* 68 */
@@ -9101,6 +9111,21 @@ exports.default = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /***/ }),
 /* 109 */
@@ -9531,6 +9556,9 @@ var routes = [{
     path: '/nostop_list',
     component: __webpack_require__(115).default
 }, {
+    path: '/nostop_list2',
+    component: __webpack_require__(158).default
+}, {
     path: '/pick',
     component: __webpack_require__(146).default
 }, {
@@ -9567,6 +9595,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_app_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_app_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_1_vue_loader_lib_template_compiler_index_id_data_v_4d4c9384_hasScoped_false_buble_transforms_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_template_index_0_app_vue__ = __webpack_require__(123);
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(155)
+}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 
@@ -9576,7 +9608,7 @@ var normalizeComponent = __webpack_require__(0)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -9710,12 +9742,33 @@ var render = function() {
                       "router-link",
                       { attrs: { to: "/nostop_list" } },
                       [
-                        _c("t-icon", { attrs: { icon: "symbols", size: "44" } })
+                        _c("t-icon", {
+                          attrs: { icon: "symbols", size: "44" }
+                        }),
+                        _vm._v(" "),
+                        _c("div", [_vm._v("无限加载列表")])
                       ],
                       1
-                    ),
-                    _vm._v(" "),
-                    _c("div", [_vm._v("无限加载列表")])
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "t-grid-item",
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: "/nostop_list2" } },
+                      [
+                        _c("t-icon", {
+                          attrs: { icon: "symbols", size: "44" }
+                        }),
+                        _vm._v(" "),
+                        _c("div", [_vm._v("无限加载列表scoll")])
+                      ],
+                      1
+                    )
                   ],
                   1
                 ),
@@ -9765,11 +9818,16 @@ var render = function() {
                 _c(
                   "t-grid-item",
                   [
-                    _c("t-icon", { attrs: { icon: "slider", size: "44" } }),
-                    _vm._v(" "),
-                    _c("router-link", { attrs: { to: "/swiper" } }, [
-                      _c("div", [_vm._v("图片silder")])
-                    ])
+                    _c(
+                      "router-link",
+                      { attrs: { to: "/swiper" } },
+                      [
+                        _c("t-icon", { attrs: { icon: "slider", size: "44" } }),
+                        _vm._v(" "),
+                        _c("div", [_vm._v("图片silder")])
+                      ],
+                      1
+                    )
                   ],
                   1
                 ),
@@ -13600,6 +13658,685 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-11c81897", esExports)
+  }
+}
+
+/***/ }),
+/* 155 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(156);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("4f452094", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/_css-loader@0.28.11@css-loader/index.js?sourceMap!../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4d4c9384\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./app.vue", function() {
+     var newContent = require("!!../../../../node_modules/_css-loader@0.28.11@css-loader/index.js?sourceMap!../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4d4c9384\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./app.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 156 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(true);
+// imports
+
+
+// module
+exports.push([module.i, "\n.t-grid-item a {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-pack: center;\r\n  -webkit-justify-content: center;\r\n          justify-content: center;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\n}\r\n", "", {"version":3,"sources":["C:/phpStudy/WWW/tai-vue-ui/application/index/view/index/application/index/view/index/app.vue"],"names":[],"mappings":";AA8GA;EACA,qBAAA;EAAA,sBAAA;EAAA,cAAA;EACA,yBAAA;EAAA,gCAAA;UAAA,wBAAA;EACA,6BAAA;EAAA,8BAAA;EAAA,+BAAA;UAAA,uBAAA;EACA,0BAAA;EAAA,4BAAA;UAAA,oBAAA;CACA","file":"app.vue","sourcesContent":["<template>\r\n  <div>\r\n    <t-layout>\r\n      <div slot=\"top\">\r\n        <t-header-back title=\"t-vue-ui\"></t-header-back>\r\n      </div>\r\n      <div>\r\n        <t-grid-group :row=\"3\">\r\n          <t-grid-item>\r\n            <router-link to=\"/button\">\r\n              <t-icon icon=\"anniu\" size='44' />\r\n              <div>button</div>\r\n            </router-link>\r\n          </t-grid-item>\r\n          <t-grid-item>\r\n            <router-link to=\"/dialog\">\r\n              <t-icon icon=\"duihuakuang\" size='44' />\r\n              <div>dialog</div>\r\n            </router-link>\r\n          </t-grid-item>\r\n          <t-grid-item>\r\n            <t-icon icon=\"icon-test2\" size='44' />\r\n            <div>icon</div>\r\n          </t-grid-item>\r\n          <t-grid-item>\r\n            <t-icon icon=\"grids\" size='44' />\r\n            <div>Grids</div>\r\n          </t-grid-item>\r\n          <t-grid-item>\r\n            <t-icon icon=\"symbols\" size='44' />\r\n            <div>List</div>\r\n          </t-grid-item>\r\n          <t-grid-item>\r\n            <router-link to=\"/nostop_list\">\r\n              <t-icon icon=\"symbols\" size='44' />\r\n              <div>无限加载列表</div>\r\n            </router-link>\r\n          </t-grid-item>\r\n          <t-grid-item>\r\n            <router-link to=\"/nostop_list2\">\r\n              <t-icon icon=\"symbols\" size='44' />\r\n              <div>无限加载列表scoll</div>\r\n            </router-link>\r\n          </t-grid-item>\r\n          <t-grid-item>\r\n            <t-icon icon=\"nav\" size='44' />\r\n            <div>nav</div>\r\n          </t-grid-item>\r\n          <t-grid-item>\r\n            <t-icon icon=\"tabs\" size='44' />\r\n            <div>tab</div>\r\n          </t-grid-item>\r\n          <t-grid-item>\r\n            <t-icon icon=\"iconset0497\" size='44' />\r\n            <div>actionSheet</div>\r\n          </t-grid-item>\r\n          <t-grid-item>\r\n            <t-icon icon=\"jindutiao\" size='44' />\r\n            <div>进度条</div>\r\n          </t-grid-item>\r\n          <t-grid-item>\r\n            <router-link to=\"/swiper\">\r\n              <t-icon icon=\"slider\" size='44' />\r\n              <div>图片silder</div>\r\n            </router-link>\r\n          </t-grid-item>\r\n          <t-grid-item>\r\n            <t-icon icon=\"chengshijianshe\" size='44' />\r\n            <div>城市选择</div>\r\n          </t-grid-item>\r\n          <t-grid-item>\r\n            <t-icon icon=\"heart-copy\" size='44' />\r\n            <div>等级</div>\r\n          </t-grid-item>\r\n          <t-grid-item>\r\n            <t-icon icon=\"lianxiangshuru\" size='44' />\r\n            <div>输入</div>\r\n          </t-grid-item>\r\n          <t-grid-item>\r\n            <t-icon icon=\"404\" size='44' />\r\n            <div>布局</div>\r\n          </t-grid-item>\r\n\r\n          <t-grid-item>\r\n            <router-link to=\"/pick\">\r\n              <t-icon icon=\"404\" size='44' />\r\n              <div>pick</div>\r\n            </router-link>\r\n          </t-grid-item>\r\n          <t-grid-item>\r\n            <router-link to=\"/date-picker\">\r\n              <t-icon icon=\"date\" size='44' />\r\n              <div>日期选择</div>\r\n            </router-link>\r\n          </t-grid-item>\r\n          <t-grid-item>\r\n            <t-icon icon=\"LC_icon_date_line_2\" size='44' />\r\n            <router-link to=\"/datetime-picker\">\r\n              <div>日期时间选择</div>\r\n            </router-link>\r\n          </t-grid-item>\r\n\r\n        </t-grid-group>\r\n\r\n      </div>\r\n      <!-- <div slot=\"bottom\">1</div> -->\r\n    </t-layout>\r\n  </div>\r\n</template>\r\n<style>\r\n.t-grid-item a {\r\n  display: flex;\r\n  justify-content: center;\r\n  flex-direction: column;\r\n  align-items: center;\r\n}\r\n</style>\r\n\r\n<script>\r\nimport Vue from \"vue\";\r\nexport default {\r\n  data() {\r\n    return {};\r\n  },\r\n  mounted() {\r\n    this.init();\r\n  },\r\n  methods: {\r\n    init() {\r\n      var self = this;\r\n    }\r\n  },\r\n  components: {}\r\n};\r\n</script>"],"sourceRoot":""}]);
+
+// exports
+
+
+/***/ }),
+/* 157 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      lists: 100,
+      loadding: false
+    };
+  },
+
+  methods: {
+    callback: function callback() {
+      var self = this;
+      setTimeout(function () {
+        self.$data.lists = self.$data.lists + 10;
+        self.$data.loadding = false;
+        self.$toast({ mes: "加载完毕" });
+      }, 1000);
+    },
+    setloadding: function setloadding(loadding) {
+      this.$data.loadding = loadding;
+    }
+  }
+};
+
+/***/ }),
+/* 158 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_nostop_list2_vue__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_nostop_list2_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_nostop_list2_vue__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_nostop_list2_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_nostop_list2_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_1_vue_loader_lib_template_compiler_index_id_data_v_b6ff5792_hasScoped_false_buble_transforms_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_template_index_0_nostop_list2_vue__ = __webpack_require__(159);
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_nostop_list2_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_1_vue_loader_lib_template_compiler_index_id_data_v_b6ff5792_hasScoped_false_buble_transforms_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_template_index_0_nostop_list2_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "application\\index\\view\\index\\example\\nostop_list2.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b6ff5792", Component.options)
+  } else {
+    hotAPI.reload("data-v-b6ff5792", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 159 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "t-layout",
+    [
+      _c("t-header-back", { attrs: { title: "无限加载" } }),
+      _vm._v(" "),
+      _c(
+        "t-infinite-scroll2",
+        {
+          attrs: { loadding: _vm.loadding, setloadding: _vm.setloadding },
+          on: { callback: _vm.callback }
+        },
+        _vm._l(_vm.lists, function(item) {
+          return _c("div", { key: item }, [_vm._v(_vm._s(item))])
+        })
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-b6ff5792", esExports)
+  }
+}
+
+/***/ }),
+/* 160 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _underscore = __webpack_require__(22);
+
+var _underscore2 = _interopRequireDefault(_underscore);
+
+var _scroll = __webpack_require__(17);
+
+var _scroll2 = _interopRequireDefault(_scroll);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  name: "t-infinite-scroll2",
+  props: {
+    loadding: {
+      type: Boolean,
+      default: false
+    },
+    setloadding: {
+      type: Function,
+      default: function _default() {}
+    }
+  },
+  data: function data() {
+    return {
+      isLoadding: false
+    };
+  },
+  updated: function updated() {
+    var self = this;
+    /* callback之后，需要重新渲染，
+            todo：如何确定callback执行完成之后？？ */
+    self.init();
+    self.scroll.scrollTo(0, self.currentScrollTop);
+  },
+
+  methods: {
+    init: function init() {
+      var self = this;
+      this.dom_container = this.$refs["container"];
+      this.dom_content = this.$refs["content"];
+      this.dom_container_height = this.dom_container.offsetHeight;
+      this.dom_container_width = this.dom_container.offsetWidth;
+      this.dom_hook = this.$refs["hook"];
+      var hook_offsetTop = this.dom_hook.offsetTop;
+      this.scroll = new _scroll2.default(this.dom_container, this.dom_content, {
+        start: function start(_ref) {
+          var top = _ref.top;
+        },
+        move: function move(_ref2) {
+          var top = _ref2.top;
+
+          if (!self.$props.loadding) {
+            if (top + hook_offsetTop > self.dom_content.clientHeight) {
+              // console.log("top", top);
+              /* 出发加载动画 */
+              // console.log("出发加载动画");
+              self.$nextTick(function () {
+                self.$data.isLoadding = true;
+                self.currentScrollTop = top;
+              });
+            }
+          } else {
+            self.$data.isLoadding = false;
+          }
+        },
+        end: function end(_ref3) {
+          var top = _ref3.top;
+
+          if (self.$data.isLoadding) {
+            self.scroll.scrollTo(0, self.currentScrollTop + 60);
+          }
+          self.$data.isLoadding = false;
+          setTimeout(function () {
+            self.scroll.setDimensions(self.dom_container_width, self.dom_container_height, self.dom_content.clientWidth, self.dom_content.clientHeight + 60);
+
+            if (top + hook_offsetTop - 40 > self.dom_content.clientHeight) {
+              //     /* 加入动画完毕之后，才能继续出发callback */
+              if (!self.$props.loadding) {
+                console.log("可以触发了");
+                self.setloadding(true);
+
+                _underscore2.default.throttle(function () {
+                  self.$emit("callback");
+                });
+                setTimeout(function () {
+                  self.setloadding(false);
+                }, 5000);
+
+                // /* 记录滚动的位置，重新init的时候，重新指定位置 */
+                // self.currentScrollTop = top;
+              }
+            }
+          }, 500);
+
+          //top 表示滚动的距离
+          //top+最底部的hook的offsetTop > dom_content.clientHeight 就可以加载了
+          /*关键点：加入拉到底部，出发加载 
+          */
+          //   console.log(
+          //     "self.dom_content.clientHeight",
+          //     self.dom_content.clientHeight
+          //   );
+          //   console.log("top", top);
+          //   console.log("hook_offsetTop", hook_offsetTop);
+          /* -40 就更加精确一点 */
+          //   if (top + hook_offsetTop - 40 > self.dom_content.clientHeight) {
+          //     /* 加入动画完毕之后，才能继续出发callback */
+          //     if (!self.$props.loadding) {
+          //       console.log("可以触发了");
+          //       self.$props.setloadding(true);
+          //       self.$emit("callback");
+          //       /* 记录滚动的位置，重新init的时候，重新指定位置 */
+          //       self.currentScrollTop = top;
+          //     }
+          //   }
+        }
+      });
+      /* scroll特新，设置边界 */
+      self.scroll.setDimensions(self.dom_container_width, self.dom_container_height, self.dom_content.clientWidth, self.dom_content.clientHeight);
+    }
+  },
+  mounted: function mounted() {
+    this.init();
+  }
+};
+
+/***/ }),
+/* 161 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_infiniteScroll2_vue__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_infiniteScroll2_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_infiniteScroll2_vue__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_infiniteScroll2_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_infiniteScroll2_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_1_vue_loader_lib_template_compiler_index_id_data_v_bb34962e_hasScoped_true_buble_transforms_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_template_index_0_infiniteScroll2_vue__ = __webpack_require__(167);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(165)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-bb34962e"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_infiniteScroll2_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_1_vue_loader_lib_template_compiler_index_id_data_v_bb34962e_hasScoped_true_buble_transforms_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_template_index_0_infiniteScroll2_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "application\\index\\view\\components\\infiniteScroll\\infiniteScroll2.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-bb34962e", Component.options)
+  } else {
+    hotAPI.reload("data-v-bb34962e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(166);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("d76d6d3a", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/_css-loader@0.28.11@css-loader/index.js?sourceMap!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-bb34962e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./infiniteScroll2.vue", function() {
+     var newContent = require("!!../../../../../node_modules/_css-loader@0.28.11@css-loader/index.js?sourceMap!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-bb34962e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./infiniteScroll2.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 166 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(true);
+// imports
+
+
+// module
+exports.push([module.i, "\n.loading[data-v-bb34962e] {\r\n  border-top: 1px solid #eee;\n}\n.container[data-v-bb34962e] {\r\n  width: 100%;\r\n  height: 100%;\r\n  position: relative;\r\n  overflow: hidden;\n}\n.container .content[data-v-bb34962e] {\r\n  /* position: absolute; */\n}\n.hook[data-v-bb34962e] {\r\n  height: 0px;\n}\r\n", "", {"version":3,"sources":["C:/phpStudy/WWW/tai-vue-ui/application/index/view/components/infiniteScroll/application/index/view/components/infiniteScroll/infiniteScroll2.vue"],"names":[],"mappings":";AAcA;EACA,2BAAA;CACA;AACA;EACA,YAAA;EACA,aAAA;EACA,mBAAA;EACA,iBAAA;CACA;AACA;EACA,yBAAA;CACA;AACA;EACA,YAAA;CACA","file":"infiniteScroll2.vue","sourcesContent":["<template>\r\n    <div class=\"t-infinite-scroll2\">\r\n        <div class=\" container\" ref=\"container\">\r\n            <div class=\"content\" ref=\"content\">\r\n                <slot />\r\n                <t-loading class=\"loading\" :loading=\"isLoadding\">拉取加载</t-loading>\r\n                <t-loading class=\"loading\" :loading=\"loadding\">加载ing</t-loading>\r\n                <div style=\"height:45px\"></div>\r\n            </div>\r\n        </div>\r\n        <div class=\"hook\" ref=\"hook\"></div>\r\n    </div>\r\n</template>\r\n<style scoped>\r\n.loading {\r\n  border-top: 1px solid #eee;\r\n}\r\n.container {\r\n  width: 100%;\r\n  height: 100%;\r\n  position: relative;\r\n  overflow: hidden;\r\n}\r\n.container .content {\r\n  /* position: absolute; */\r\n}\r\n.hook {\r\n  height: 0px;\r\n}\r\n</style>\r\n\r\n<script>\r\nimport _ from \"underscore\";\r\nimport Scroll from \"../scroll/scroll\";\r\nexport default {\r\n  name: \"t-infinite-scroll2\",\r\n  props: {\r\n    loadding: {\r\n      type: Boolean,\r\n      default: false\r\n    },\r\n    setloadding: {\r\n      type: Function,\r\n      default: () => {}\r\n    }\r\n  },\r\n  data() {\r\n    return {\r\n      isLoadding: false\r\n    };\r\n  },\r\n  updated() {\r\n    var self = this;\r\n    /* callback之后，需要重新渲染，\r\n            todo：如何确定callback执行完成之后？？ */\r\n    self.init();\r\n    self.scroll.scrollTo(0, self.currentScrollTop);\r\n  },\r\n  methods: {\r\n    init() {\r\n      var self = this;\r\n      this.dom_container = this.$refs[\"container\"];\r\n      this.dom_content = this.$refs[\"content\"];\r\n      this.dom_container_height = this.dom_container.offsetHeight;\r\n      this.dom_container_width = this.dom_container.offsetWidth;\r\n      this.dom_hook = this.$refs[\"hook\"];\r\n      var hook_offsetTop = this.dom_hook.offsetTop;\r\n      this.scroll = new Scroll(this.dom_container, this.dom_content, {\r\n        start: ({ top }) => {},\r\n        move: ({ top }) => {\r\n          if (!self.$props.loadding) {\r\n            if (top + hook_offsetTop > self.dom_content.clientHeight) {\r\n              // console.log(\"top\", top);\r\n              /* 出发加载动画 */\r\n              // console.log(\"出发加载动画\");\r\n              self.$nextTick(function() {\r\n                self.$data.isLoadding = true;\r\n                self.currentScrollTop = top;\r\n              });\r\n            }\r\n          } else {\r\n            self.$data.isLoadding = false;\r\n          }\r\n        },\r\n        end: ({ top }) => {\r\n          if (self.$data.isLoadding) {\r\n            self.scroll.scrollTo(0, self.currentScrollTop + 60);\r\n          }\r\n          self.$data.isLoadding = false;\r\n          setTimeout(() => {\r\n            self.scroll.setDimensions(\r\n              self.dom_container_width,\r\n              self.dom_container_height,\r\n              self.dom_content.clientWidth,\r\n              self.dom_content.clientHeight + 60\r\n            );\r\n\r\n            if (top + hook_offsetTop - 40 > self.dom_content.clientHeight) {\r\n              //     /* 加入动画完毕之后，才能继续出发callback */\r\n              if (!self.$props.loadding) {\r\n                console.log(\"可以触发了\");\r\n                self.setloadding(true);\r\n\r\n                _.throttle(() => {\r\n                  self.$emit(\"callback\");\r\n                });\r\n                setTimeout(() => {\r\n                  self.setloadding(false);\r\n                }, 5000);\r\n\r\n                // /* 记录滚动的位置，重新init的时候，重新指定位置 */\r\n                // self.currentScrollTop = top;\r\n              }\r\n            }\r\n          }, 500);\r\n\r\n          //top 表示滚动的距离\r\n          //top+最底部的hook的offsetTop > dom_content.clientHeight 就可以加载了\r\n          /*关键点：加入拉到底部，出发加载 \r\n       */\r\n          //   console.log(\r\n          //     \"self.dom_content.clientHeight\",\r\n          //     self.dom_content.clientHeight\r\n          //   );\r\n          //   console.log(\"top\", top);\r\n          //   console.log(\"hook_offsetTop\", hook_offsetTop);\r\n          /* -40 就更加精确一点 */\r\n          //   if (top + hook_offsetTop - 40 > self.dom_content.clientHeight) {\r\n          //     /* 加入动画完毕之后，才能继续出发callback */\r\n          //     if (!self.$props.loadding) {\r\n          //       console.log(\"可以触发了\");\r\n          //       self.$props.setloadding(true);\r\n          //       self.$emit(\"callback\");\r\n          //       /* 记录滚动的位置，重新init的时候，重新指定位置 */\r\n          //       self.currentScrollTop = top;\r\n          //     }\r\n          //   }\r\n        }\r\n      });\r\n      /* scroll特新，设置边界 */\r\n      self.scroll.setDimensions(\r\n        self.dom_container_width,\r\n        self.dom_container_height,\r\n        self.dom_content.clientWidth,\r\n        self.dom_content.clientHeight\r\n      );\r\n    }\r\n  },\r\n  mounted() {\r\n    this.init();\r\n  }\r\n};\r\n</script>"],"sourceRoot":""}]);
+
+// exports
+
+
+/***/ }),
+/* 167 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "t-infinite-scroll2" }, [
+    _c("div", { ref: "container", staticClass: " container" }, [
+      _c(
+        "div",
+        { ref: "content", staticClass: "content" },
+        [
+          _vm._t("default"),
+          _vm._v(" "),
+          _c(
+            "t-loading",
+            { staticClass: "loading", attrs: { loading: _vm.isLoadding } },
+            [_vm._v("拉取加载")]
+          ),
+          _vm._v(" "),
+          _c(
+            "t-loading",
+            { staticClass: "loading", attrs: { loading: _vm.loadding } },
+            [_vm._v("加载ing")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticStyle: { height: "45px" } })
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { ref: "hook", staticClass: "hook" })
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-bb34962e", esExports)
+  }
+}
+
+/***/ }),
+/* 168 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  name: "t-loading",
+  props: {
+    loading: Boolean
+  },
+  created: function created() {}
+};
+
+/***/ }),
+/* 169 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Loading = undefined;
+
+var _loading = __webpack_require__(170);
+
+var _loading2 = _interopRequireDefault(_loading);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.Loading = _loading2.default;
+
+/***/ }),
+/* 170 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_loading_vue__ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_loading_vue__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_loading_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_loading_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_1_vue_loader_lib_template_compiler_index_id_data_v_28b1c48e_hasScoped_false_buble_transforms_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_template_index_0_loading_vue__ = __webpack_require__(173);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(171)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_loading_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_1_vue_loader_lib_template_compiler_index_id_data_v_28b1c48e_hasScoped_false_buble_transforms_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_template_index_0_loading_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "application\\index\\view\\components\\loading\\loading.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-28b1c48e", Component.options)
+  } else {
+    hotAPI.reload("data-v-28b1c48e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 171 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(172);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("329b0c43", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/_css-loader@0.28.11@css-loader/index.js?sourceMap!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-28b1c48e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./loading.vue", function() {
+     var newContent = require("!!../../../../../node_modules/_css-loader@0.28.11@css-loader/index.js?sourceMap!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-28b1c48e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./loading.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 172 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(true);
+// imports
+
+
+// module
+exports.push([module.i, "\n.fade-enter-active,\r\n.fade-leave-active {\r\n  -webkit-transition: opacity 0.5s;\r\n  transition: opacity 0.5s;\n}\n.fade-enter,\r\n.fade-leave-to {\r\n  opacity: 0;\n}\n.tai_loading {\r\n  width: 100%;\r\n  height: 50px;\r\n  background: #fff;\r\n  font-size: 22px;\r\n  text-align: center;\n}\r\n", "", {"version":3,"sources":["C:/phpStudy/WWW/tai-vue-ui/application/index/view/components/loading/application/index/view/components/loading/loading.vue"],"names":[],"mappings":";AAiBA;;EAEA,iCAAA;EAAA,yBAAA;CACA;AACA;;EAEA,WAAA;CACA;AACA;EACA,YAAA;EACA,aAAA;EACA,iBAAA;EACA,gBAAA;EACA,mBAAA;CACA","file":"loading.vue","sourcesContent":["<template>\r\n  <div class=\"tai_loading\" v-show=\"loading\">\r\n    <t-icon icon=\"loading\"></t-icon>\r\n    <slot />\r\n  </div>\r\n</template>\r\n\r\n<script>\r\nexport default {\r\n  name: \"t-loading\",\r\n  props: {\r\n    loading: Boolean\r\n  },\r\n  created() {}\r\n};\r\n</script>\r\n<style>\r\n.fade-enter-active,\r\n.fade-leave-active {\r\n  transition: opacity 0.5s;\r\n}\r\n.fade-enter,\r\n.fade-leave-to {\r\n  opacity: 0;\r\n}\r\n.tai_loading {\r\n  width: 100%;\r\n  height: 50px;\r\n  background: #fff;\r\n  font-size: 22px;\r\n  text-align: center;\r\n}\r\n</style>\r\n"],"sourceRoot":""}]);
+
+// exports
+
+
+/***/ }),
+/* 173 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.loading,
+          expression: "loading"
+        }
+      ],
+      staticClass: "tai_loading"
+    },
+    [
+      _c("t-icon", { attrs: { icon: "loading" } }),
+      _vm._v(" "),
+      _vm._t("default")
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-28b1c48e", esExports)
   }
 }
 

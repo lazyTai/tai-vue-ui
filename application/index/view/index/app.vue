@@ -33,8 +33,14 @@
           <t-grid-item>
             <router-link to="/nostop_list">
               <t-icon icon="symbols" size='44' />
+              <div>无限加载列表</div>
             </router-link>
-            <div>无限加载列表</div>
+          </t-grid-item>
+          <t-grid-item>
+            <router-link to="/nostop_list2">
+              <t-icon icon="symbols" size='44' />
+              <div>无限加载列表scoll</div>
+            </router-link>
           </t-grid-item>
           <t-grid-item>
             <t-icon icon="nav" size='44' />
@@ -53,8 +59,8 @@
             <div>进度条</div>
           </t-grid-item>
           <t-grid-item>
-            <t-icon icon="slider" size='44' />
             <router-link to="/swiper">
+              <t-icon icon="slider" size='44' />
               <div>图片silder</div>
             </router-link>
           </t-grid-item>
@@ -101,6 +107,15 @@
     </t-layout>
   </div>
 </template>
+<style>
+.t-grid-item a {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+</style>
+
 <script>
 import Vue from "vue";
 export default {

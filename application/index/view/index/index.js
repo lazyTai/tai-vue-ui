@@ -28,6 +28,10 @@ const routes = [
         component: require('./example/nostoplist').default
     },
     {
+        path: '/nostop_list2',
+        component: require('./example/nostop_list2.vue').default
+    },
+    {
         path: '/pick',
         component: require('./example/pick').default
     },

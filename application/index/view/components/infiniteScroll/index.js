@@ -1,2 +1,3 @@
 import InfiniteScroll from './infiniteScroll.vue'
-export {InfiniteScroll}
+import InfiniteScroll2 from './infiniteScroll2.vue'
+export { InfiniteScroll, InfiniteScroll2 }

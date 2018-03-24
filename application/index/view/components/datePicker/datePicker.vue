@@ -3,6 +3,7 @@
   position: absolute;
   bottom: 0px;
   width: 100%;
+  max-width: 800px;
   z-index: 99;
 }
 .t-date-pickers {
@@ -172,7 +173,6 @@ export default {
       this.$data.years = years;
       this.$data.months = months;
       this.$data.days = days;
-      console.log(this.$data.days);
     },
     callback3({ value }) {
       this.currentDay = value;

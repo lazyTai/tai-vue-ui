@@ -36,6 +36,11 @@ const routes = [
         component: require('./example/datePick').default
     },
     {
+        path: '/datetime-picker',
+        component: require('./example/datetime.vue').default
+    },
+    
+    {
         path: '/',
         redirect: '/app'
     },

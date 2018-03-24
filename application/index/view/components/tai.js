@@ -8,6 +8,7 @@ import { InfiniteScroll } from './infiniteScroll/index'
 import { Mark } from './mark/mark.js'
 import { Pick, PickItem } from './pick/pick.js'
 import { DatePicker } from './datePicker/index.js'
+import { DateTimePicker } from './datetimePicker/index'
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
 }, false);
@@ -25,6 +26,7 @@ const install = function (Vue) {
     Vue.component(Pick.name, Pick);
     Vue.component(PickItem.name, PickItem);
     Vue.component(DatePicker.name, DatePicker);
+    Vue.component(DateTimePicker.name, DateTimePicker);
     Vue.prototype.$toast = Toast;
     Vue.prototype.$mark = Mark;
 

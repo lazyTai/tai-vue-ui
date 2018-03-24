@@ -81,8 +81,14 @@
           </t-grid-item>
           <t-grid-item>
             <router-link to="/date-picker">
-              <t-icon icon="404" size='44' />
+              <t-icon icon="date" size='44' />
               <div>日期选择</div>
+            </router-link>
+          </t-grid-item>
+          <t-grid-item>
+            <t-icon icon="LC_icon_date_line_2" size='44' />
+            <router-link to="/datetime-picker">
+              <div>日期时间选择</div>
             </router-link>
           </t-grid-item>
 

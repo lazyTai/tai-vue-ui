@@ -79,6 +79,12 @@
               <div>pick</div>
             </router-link>
           </t-grid-item>
+          <t-grid-item>
+            <router-link to="/date-picker">
+              <t-icon icon="404" size='44' />
+              <div>日期选择</div>
+            </router-link>
+          </t-grid-item>
 
         </t-grid-group>
 

@@ -28,6 +28,10 @@ export default {
     show: Boolean,
     ListData: Array,
     ListItemKey: String,
+    mark: {
+      type: Boolean,
+      default: false
+    },
     value: {
       type: [String, Number, Object],
       default: null
@@ -51,7 +55,7 @@ export default {
               index = _index;
             }
           }
-        });//end：foreach
+        }); //end：foreach
         return index + 1;
       } else {
         return undefined;
@@ -60,7 +64,9 @@ export default {
   },
   mounted() {
     var self = this;
-    this.$mark();
+    if (this.$props.mark) {
+      this.$mark();
+    }
     this.dom_container = this.$refs["container"];
     this.dom_content = this.$refs["content"];
     self.$scroll = new Scroll(this.dom_container, this.dom_content, {
@@ -129,6 +135,13 @@ export default {
 }
 .t-pick-container {
   height: 200px;
+  width: 100%;
+  /* position: absolute; */
+  z-index: 99;
+  width: 100%;
+  height: 200px;
+  bottom: 0px;
+  background: #eeee;
   overflow: hidden;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -147,13 +160,5 @@ export default {
   -o-transform: translateZ(0);
   transform-origin: left top;
   transform: translateZ(0);
-}
-.t-pick {
-  position: absolute;
-  z-index: 99;
-  width: 100%;
-  height: 200px;
-  bottom: 0px;
-  background: #eeee;
 }
 </style>

@@ -1,9 +1,31 @@
+<style >
+.t-date-picker {
+  display: flex;
+  position: relative;
+  bottom: 0px;
+}
+.t-date-picker .item {
+  width: 30%;
+  height: 200px;
+  z-index: 99;
+  width: 100%;
+  height: 200px;
+  background: #eeee;
+}
+</style>
+
 <template>
-    <div class="t-date-picker">
-        <t-pick :ListData="years" value="" @callback="callback1"></t-pick>
-        <t-pick :ListData="months" value="" @callback="callback2"></t-pick>
-        <t-pick :ListData="days" value="" @callback="callback3"></t-pick>
+  <div class="t-date-picker">
+    <div class="item item-year">
+      <t-pick :ListData="years" :value="currentYear" @callback="callback1"></t-pick>
     </div>
+    <div class="item item-month">
+      <t-pick :ListData="months" :value="currentMonth" @callback="callback2"></t-pick>
+    </div>
+    <div class="item item-day">
+      <t-pick :ListData="days" :value="currentDay" @callback="callback3"></t-pick>
+    </div>
+  </div>
 </template>
 <script>
 function mGetDate(year, month) {
@@ -17,22 +39,22 @@ export default {
   name: "t-date-picker",
   props: {
     year: {
-      type: String,
+      type: [String, Number],
       default: new Date().getFullYear()
     },
     month: {
-      type: String,
+      type: [String, Number],
       default: new Date().getMonth() + 1
     },
     day: {
-      type: String,
+      type: [String, Number],
       default: new Date().getDay()
     }
   },
   data() {
     var currnetDate = new Date();
     var currentYear = currnetDate.getFullYear();
-    var currentMoth = currnetDate.getMonth() + 1;
+    var currentMonth = currnetDate.getMonth() + 1;
     var currentDay = currnetDate.getDay();
     var years = [];
     for (var i = currentYear - 10; i < currentYear + 10; i++) {
@@ -47,7 +69,7 @@ export default {
       years,
       months,
       currentYear,
-      currentMoth,
+      currentMonth,
       currentDay,
       days
     };

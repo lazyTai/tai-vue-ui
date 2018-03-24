@@ -32,6 +32,10 @@ const routes = [
         component: require('./example/pick').default
     },
     {
+        path: '/date-picker',
+        component: require('./example/datePick').default
+    },
+    {
         path: '/',
         redirect: '/app'
     },

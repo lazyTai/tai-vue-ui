@@ -56,9 +56,6 @@
 <script>
 import Mark from "../mark/mark.js";
 function mGetDate(year, month) {
-  var date = new Date();
-  var year = date.getFullYear();
-  var month = date.getMonth() + 1;
   var d = new Date(year, month, 0);
   return d.getDate();
 }
@@ -91,15 +88,11 @@ export default {
     var currentYear = this.$props.year;
     var currentMonth = this.$props.month;
     var currentDay = this.$props.day;
-    var years = [];
-    for (var i = currentYear - 10; i < parseInt(currentYear) + 10; i++) {
-      years.push(i);
-    }
-    var months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    var days = [];
-    for (var i = 1; i < mGetDate(currentYear, currentMonth); i++) {
-      days.push(i);
-    }
+    var { years, months, days } = this.fixed_date_list(
+      currentYear,
+      currentMonth,
+      currentDay
+    );
     return {
       years,
       months,
@@ -131,6 +124,22 @@ export default {
     }
   },
   methods: {
+    fixed_date_list(currentYear, currentMonth, currentDay) {
+      var years = [];
+      for (var i = currentYear - 10; i < parseInt(currentYear) + 10; i++) {
+        years.push(i);
+      }
+      var months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+      var days = [];
+      for (var i = 1; i < mGetDate(currentYear, currentMonth); i++) {
+        days.push(i);
+      }
+      return {
+        years,
+        months,
+        days
+      };
+    },
     click_save() {
       this.$emit("sure", {
         year: this.currentYear,
@@ -144,12 +153,37 @@ export default {
     },
     callback1({ value }) {
       this.currentYear = value;
+      var { years, months, days } = this.fixed_date_list(
+        this.currentYear,
+        this.currentMonth,
+        this.currentDay
+      );
+      this.$data.years = years;
+      this.$data.months = months;
+      this.$data.days = days;
     },
     callback2({ value }) {
       this.currentMonth = value;
+      var { years, months, days } = this.fixed_date_list(
+        this.currentYear,
+        this.currentMonth,
+        this.currentDay
+      );
+      this.$data.years = years;
+      this.$data.months = months;
+      this.$data.days = days;
+      console.log(this.$data.days);
     },
     callback3({ value }) {
       this.currentDay = value;
+      var { years, months, days } = this.fixed_date_list(
+        this.currentYear,
+        this.currentMonth,
+        this.currentDay
+      );
+      this.$data.years = years;
+      this.$data.months = months;
+      this.$data.days = days;
     }
   }
 };

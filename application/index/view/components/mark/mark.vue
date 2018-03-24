@@ -1,6 +1,6 @@
 <template>
-    <div class="t-mark" :show="show">
-    </div>
+  <div class="t-mark" :show="show">
+  </div>
 </template>
 <script>
 export default {
@@ -21,6 +21,7 @@ export default {
   z-index: 98;
   background: #333;
   opacity: 0.5;
+  bottom: 0;
 }
 </style>
 

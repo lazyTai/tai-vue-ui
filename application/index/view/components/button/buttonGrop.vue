@@ -14,9 +14,11 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 10px;
+  flex-wrap:wrap;
 }
 .t-button-group .t-button {
   margin-right: 10px;
+   margin-top: 10px;
 }
 </style>
 

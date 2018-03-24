@@ -18,7 +18,7 @@ export function Toast(opt = {}){
     instance.mes = opt.mes;
     document.body.appendChild(instance.$el);
     setTimeout(() => {
-        instance.close()
+        instance.close();
     }, opt.time || 1000)
     return instance.$el;
     

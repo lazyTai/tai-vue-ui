@@ -39,7 +39,11 @@ const routes = [
         path: '/datetime-picker',
         component: require('./example/datetime.vue').default
     },
-    
+    {
+        path: '/swiper',
+        component: require('./example/swiper.vue').default
+    },
+
     {
         path: '/',
         redirect: '/app'

@@ -54,7 +54,9 @@
           </t-grid-item>
           <t-grid-item>
             <t-icon icon="slider" size='44' />
-            <div>图片silder</div>
+            <router-link to="/swiper">
+              <div>图片silder</div>
+            </router-link>
           </t-grid-item>
           <t-grid-item>
             <t-icon icon="chengshijianshe" size='44' />
@@ -95,7 +97,7 @@
         </t-grid-group>
 
       </div>
-      <div slot="bottom">1</div>
+      <!-- <div slot="bottom">1</div> -->
     </t-layout>
   </div>
 </template>

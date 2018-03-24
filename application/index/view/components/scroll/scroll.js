@@ -17,9 +17,21 @@ var renderUtil = require('./renderUtil.js').default
 // content.style.height = contentHeight + "px";
 // window.tScroll=tScroll;
 export default function tScroll(container, content, opt) {
+    var scrollingX, scrollingY;
+    if (opt.scrollingX === undefined) {
+        scrollingX = false;
+    } else {
+        scrollingX = opt.scrollingX;
+    }
+    if (opt.scrollingY === undefined) {
+        scrollingY = true;
+    } else {
+        scrollingY = opt.scrollingX;
+    }
+
     var render = renderUtil(content)
     var scroller = new Scroller(render, {
-        zooming: true, scrollingX: false
+        zooming: true, scrollingX, scrollingY
     });
     var rect = container.getBoundingClientRect();
     scroller.setPosition(rect.left + container.clientLeft, rect.top + container.clientTop);
@@ -86,7 +98,7 @@ export default function tScroll(container, content, opt) {
             scroller.doMouseZoom(e.detail ? (e.detail * -120) : e.wheelDelta, e.timeStamp, e.pageX, e.pageY);
         }, false);
     }
-    
+
     return scroller;
 }
 // export default ()=>{window.tScroll()};

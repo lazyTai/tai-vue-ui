@@ -1,7 +1,8 @@
 <style >
 .t-date-picker {
   display: flex;
-  position: relative;
+  position: absolute;
+  width: 100%;
   bottom: 0px;
 }
 .t-date-picker .item {
@@ -55,14 +56,14 @@ export default {
     var currnetDate = new Date();
     var currentYear = currnetDate.getFullYear();
     var currentMonth = currnetDate.getMonth() + 1;
-    var currentDay = currnetDate.getDay();
+    var currentDay = currnetDate.getDate();
     var years = [];
     for (var i = currentYear - 10; i < currentYear + 10; i++) {
       years.push(i);
     }
     var months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     var days = [];
-    for (var i = 1; i < currentDay; i++) {
+    for (var i = 1; i < mGetDate(currentYear, currentMonth); i++) {
       days.push(i);
     }
     return {
@@ -74,10 +75,23 @@ export default {
       days
     };
   },
+  updated() {
+    this.$emit("callback", {
+      year: this.currentYear,
+      month: this.currentMonth,
+      day: this.currentDay
+    });
+  },
   methods: {
-    callback1(val) {},
-    callback2(val) {},
-    callback3(val) {}
+    callback1({ value }) {
+      this.currentYear = value;
+    },
+    callback2({ value }) {
+      this.currentMonth = value;
+    },
+    callback3({ value }) {
+      this.currentDay = value;
+    }
   }
 };
 </script>

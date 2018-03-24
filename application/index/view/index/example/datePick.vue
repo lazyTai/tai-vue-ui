@@ -1,8 +1,21 @@
 <template>
     <div class="datepick">
-        <t-date-picker></t-date-picker>
+        result:{{value}}
+        <t-date-picker @callback="callback"></t-date-picker>
     </div>
 </template>
 
 <script>
+export default {
+  data() {
+    return {
+      value: null
+    };
+  },
+  methods: {
+    callback(val) {
+      this.value = val;
+    }
+  }
+};
 </script>

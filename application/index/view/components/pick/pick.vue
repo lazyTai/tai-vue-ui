@@ -136,7 +136,7 @@ export default {
 .t-pick-container {
   height: 200px;
   width: 100%;
-  /* position: absolute; */
+  position: relative;
   z-index: 99;
   width: 100%;
   height: 200px;

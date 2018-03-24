@@ -1,11 +1,15 @@
 <style >
 .t-date-picker {
-  display: flex;
   position: absolute;
-  width: 100%;
   bottom: 0px;
+  width: 100%;
+  z-index: 99;
 }
-.t-date-picker .item {
+.t-date-pickers {
+  display: flex;
+  width: 100%;
+}
+.t-date-pickers .item {
   width: 30%;
   height: 200px;
   z-index: 99;
@@ -13,22 +17,44 @@
   height: 200px;
   background: #eeee;
 }
+.t-date-toolbtns {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 200px;
+  width: 100%;
+  background: #fff;
+  padding: 5px;
+  display: flex;
+  justify-content: flex-end;
+}
+.t-date-toolbtns .t-button {
+  margin-right: 10px;
+}
 </style>
 
 <template>
-  <div class="t-date-picker">
-    <div class="item item-year">
-      <t-pick :ListData="years" :value="currentYear" @callback="callback1"></t-pick>
+  <div class="t-date-picker" v-if="show">
+    <div class="t-date-toolbtns">
+      <t-button type='hollow'>取消</t-button>
+      <t-button @click.native="click_save">确定</t-button>
     </div>
-    <div class="item item-month">
-      <t-pick :ListData="months" :value="currentMonth" @callback="callback2"></t-pick>
+
+    <div class="t-date-pickers">
+      <div class="item item-year">
+        <t-pick :ListData="years" :value="currentYear" @callback="callback1"></t-pick>
+      </div>
+      <div class="item item-month">
+        <t-pick :ListData="months" :value="currentMonth" @callback="callback2"></t-pick>
+      </div>
+      <div class="item item-day">
+        <t-pick :ListData="days" :value="currentDay" @callback="callback3"></t-pick>
+      </div>
     </div>
-    <div class="item item-day">
-      <t-pick :ListData="days" :value="currentDay" @callback="callback3"></t-pick>
-    </div>
+
   </div>
 </template>
 <script>
+import Mark from "../mark/mark.js";
 function mGetDate(year, month) {
   var date = new Date();
   var year = date.getFullYear();
@@ -39,6 +65,10 @@ function mGetDate(year, month) {
 export default {
   name: "t-date-picker",
   props: {
+    show: {
+      type: Boolean,
+      value: false
+    },
     year: {
       type: [String, Number],
       default: new Date().getFullYear()
@@ -51,6 +81,10 @@ export default {
       type: [String, Number],
       default: new Date().getDay()
     }
+  },
+  model: {
+    prop: "show",
+    event: "changeShow"
   },
   data() {
     var currnetDate = new Date();
@@ -81,8 +115,33 @@ export default {
       month: this.currentMonth,
       day: this.currentDay
     });
+    var self = this;
+    if (self.$props.show) {
+      if (!self.$mark_el) {
+        self.$mark_el = self.$mark();
+      }
+    }
+  },
+  mounted() {
+    var self = this;
+    if (self.$props.show) {
+      if (!self.$mark_el) {
+        self.$mark_el = self.$mark();
+      }
+    }
   },
   methods: {
+    click_save() {
+      this.$emit("sure", {
+        year: this.currentYear,
+        month: this.currentMonth,
+        day: this.currentDay
+      });
+      this.$data.show = false;
+      this.$mark_el.closeMark();
+      this.$mark_el = null;
+      this.$emit("changeShow", !this.$props.show);
+    },
     callback1({ value }) {
       this.currentYear = value;
     },

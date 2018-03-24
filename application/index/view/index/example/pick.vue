@@ -1,7 +1,7 @@
 <template>
   <div>
     result: key:{{result}}
-    <t-pick :ListData="lists" ListItemKey="value" @callback="callback" :value="pick_value"></t-pick>
+    <t-pick :ListData="lists" @sure="sure" ListItemKey="value" @callback="callback" :value="pick_value"></t-pick>
   </div>
 </template>
 <script>
@@ -22,15 +22,19 @@ export default {
         { id: 9, value: 9 }
       ],
       result: { value: 0, key: 0 },
-      pick_value:  { id: 9, value: 9 },
+      pick_value: { id: 9, value: 9 }
     };
   },
   created() {},
   methods: {
+    sure({ value, key }) {
+      console.log(this);
+      console.log("key", key);
+      console.log("value", value);
+      this.$data.result.value = value;
+      this.$data.result.key = key;
+    },
     callback({ value, key }) {
-      /* todo
-      这里的this会无效
-      */
       console.log(this);
       console.log("key", key);
       console.log("value", value);

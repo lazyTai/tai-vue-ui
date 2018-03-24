@@ -11,7 +11,6 @@
 
 </template>
 <script>
-import Bus from "../../util/bus";
 /* 1.生成mark */
 /* 2.生成底部div */
 /* 3.根据数据生成scroll */
@@ -28,9 +27,29 @@ export default {
   props: {
     show: Boolean,
     ListData: Array,
-    ListItemKey: String
+    ListItemKey: String,
+    value: {
+      type: [String, Number],
+      default: null
+    }
   },
-  methods: {},
+  methods: {
+    findCurrentPageByValue() {
+      var self = this;
+      var value = this.$props.value;
+      var index = false;
+      if (value) {
+        self.$props.ListData.forEach((item, _index) => {
+          if (item == value) {
+            index = _index;
+          }
+        });
+        return index+1;
+      } else {
+        return undefined;
+      }
+    }
+  },
   mounted() {
     var self = this;
     this.$mark();
@@ -83,7 +102,10 @@ export default {
       this.dom_content.clientHeight + 30 * 3
     );
     /* 一开始滚动3个 */
-    this.$data.currentPage = 3;
+    /* 加入一开始根据value得到currentPage */
+    this.$data.currentPage = this.findCurrentPageByValue(this.$props.value)
+      ? this.findCurrentPageByValue(this.$props.value)
+      : 3;
     self.$scroll.scrollTo(0, this.$data.currentPage * 40);
   }
 };

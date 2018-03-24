@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"C:\phpStudy\WWW\tai-vue-ui\public/../application/index\view\index\index.html";i:1521858288;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"C:\phpStudy\WWW\tai-vue-ui\public/../application/index\view\index\index.html";i:1521875540;}*/ ?>
 <html lang="en">
 
 <head>

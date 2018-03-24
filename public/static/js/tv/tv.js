@@ -1070,28 +1070,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _bus = __webpack_require__(78);
-
-var _bus2 = _interopRequireDefault(_bus);
-
-var _scroll = __webpack_require__(79);
+var _scroll = __webpack_require__(78);
 
 var _scroll2 = _interopRequireDefault(_scroll);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 exports.default = {
   name: "t-pick",
@@ -1105,9 +1088,29 @@ exports.default = {
   props: {
     show: Boolean,
     ListData: Array,
-    ListItemKey: String
+    ListItemKey: String,
+    value: {
+      type: [String, Number],
+      default: null
+    }
   },
-  methods: {},
+  methods: {
+    findCurrentPageByValue: function findCurrentPageByValue() {
+      var self = this;
+      var value = this.$props.value;
+      var index = false;
+      if (value) {
+        self.$props.ListData.forEach(function (item, _index) {
+          if (item == value) {
+            index = _index;
+          }
+        });
+        return index + 1;
+      } else {
+        return undefined;
+      }
+    }
+  },
   mounted: function mounted() {
     var self = this;
     this.$mark();
@@ -1161,10 +1164,23 @@ exports.default = {
     });
     self.$scroll.setDimensions(this.dom_container.clientWidth, this.dom_container.clientHeight, this.dom_content.clientWidth, this.dom_content.clientHeight + 30 * 3);
     /* 一开始滚动3个 */
-    this.$data.currentPage = 3;
+    /* 加入一开始根据value得到currentPage */
+    this.$data.currentPage = this.findCurrentPageByValue(this.$props.value) ? this.findCurrentPageByValue(this.$props.value) : 3;
     self.$scroll.scrollTo(0, this.$data.currentPage * 40);
   }
-};
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* 1.生成mark */
 /* 2.生成底部div */
 /* 3.根据数据生成scroll */
@@ -4560,7 +4576,7 @@ var _pick = __webpack_require__(75);
 
 var _pick2 = _interopRequireDefault(_pick);
 
-var _pick_item = __webpack_require__(84);
+var _pick_item = __webpack_require__(83);
 
 var _pick_item2 = _interopRequireDefault(_pick_item);
 
@@ -4578,7 +4594,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_pick_vue__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_pick_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_pick_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_pick_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_pick_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_1_vue_loader_lib_template_compiler_index_id_data_v_1e22edd9_hasScoped_true_buble_transforms_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_template_index_0_pick_vue__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_1_vue_loader_lib_template_compiler_index_id_data_v_1e22edd9_hasScoped_true_buble_transforms_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_template_index_0_pick_vue__ = __webpack_require__(82);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
@@ -4662,7 +4678,7 @@ exports = module.exports = __webpack_require__(1)(true);
 
 
 // module
-exports.push([module.i, "\n._center_mark[data-v-1e22edd9] {\r\n  position: absolute;\r\n  height: 40px;\r\n  background: #222;\r\n  opacity: 0.5;\r\n  width: 100%;\r\n  top: 80px;\n}\n.t-pick-container[data-v-1e22edd9] {\r\n  height: 200px;\r\n  overflow: hidden;\r\n  -webkit-user-select: none;\r\n  -o-user-select: none;\r\n  user-select: none;\n}\n.t-pick-content[data-v-1e22edd9] {\r\n  -webkit-transform-origin: left top;\r\n  -webkit-transform: translateZ(0);\r\n  -moz-transform-origin: left top;\r\n  -moz-transform: translateZ(0);\r\n  -ms-transform-origin: left top;\r\n  -ms-transform: translateZ(0);\r\n  -o-transform-origin: left top;\r\n  -o-transform: translateZ(0);\r\n  transform-origin: left top;\r\n  transform: translateZ(0);\n}\n.t-pick[data-v-1e22edd9] {\r\n  position: absolute;\r\n  z-index: 99;\r\n  width: 100%;\r\n  height: 200px;\r\n  bottom: 0px;\r\n  background: #eeee;\n}\r\n", "", {"version":3,"sources":["C:/phpStudy/WWW/tai-vue-ui/application/index/view/components/pick/application/index/view/components/pick/pick.vue"],"names":[],"mappings":";AA2FA;EACA,mBAAA;EACA,aAAA;EACA,iBAAA;EACA,aAAA;EACA,YAAA;EACA,UAAA;CACA;AACA;EACA,cAAA;EACA,iBAAA;EACA,0BAAA;EAGA,qBAAA;EACA,kBAAA;CACA;AACA;EACA,mCAAA;EACA,iCAAA;EACA,gCAAA;EACA,8BAAA;EACA,+BAAA;EACA,6BAAA;EACA,8BAAA;EACA,4BAAA;EACA,2BAAA;EACA,yBAAA;CACA;AACA;EACA,mBAAA;EACA,YAAA;EACA,YAAA;EACA,cAAA;EACA,YAAA;EACA,kBAAA;CACA","file":"pick.vue","sourcesContent":["<template>\r\n  <div class=\"t-pick t-pick-container\" ref=\"container\" :show=\"show\">\r\n    <div class=\"t-pick-content\" ref=\"content\">\r\n      <t-pick-item v-for=\"(item,key) in 3\" :key=\"key+'none'\"> </t-pick-item>\r\n      <t-pick-item v-for=\"(item,key) in ListData\" :key=\"key\">\r\n        {{ListItemKey?item[ListItemKey]:item}}\r\n      </t-pick-item>\r\n    </div>\r\n    <div class=\"_center_mark\"></div>\r\n  </div>\r\n\r\n</template>\r\n<script>\r\nimport Bus from \"../../util/bus\";\r\n/* 1.生成mark */\r\n/* 2.生成底部div */\r\n/* 3.根据数据生成scroll */\r\n/* 4,操作滚动，一个一个滚动 */\r\nimport Scroll from \"../scroll/scroll\";\r\nexport default {\r\n  name: \"t-pick\",\r\n  data() {\r\n    return {\r\n      currentPage: 2,\r\n      childContext: null\r\n    };\r\n  },\r\n  props: {\r\n    show: Boolean,\r\n    ListData: Array,\r\n    ListItemKey: String\r\n  },\r\n  methods: {},\r\n  mounted() {\r\n    var self = this;\r\n    this.$mark();\r\n    this.dom_container = this.$refs[\"container\"];\r\n    this.dom_content = this.$refs[\"content\"];\r\n    self.$scroll = new Scroll(this.dom_container, this.dom_content, {\r\n      start({ top }) {\r\n        /* 加入方向判断，让操作更加准确 */\r\n        this.currentTop = top;\r\n      },\r\n      move({ top }) {\r\n        if (top - this.currentTop > 0) {\r\n          this.dire = \"up\";\r\n        } else {\r\n          this.dire = \"down\";\r\n        }\r\n        this.currentTop = top;\r\n      },\r\n      end({ top }) {\r\n        // console.log(this.dire);\r\n        var keli = Math.ceil(top / 40);\r\n        if (this.dire == \"down\") {\r\n          keli = Math.round(top / 40);\r\n        }\r\n\r\n        if (keli <= 0) {\r\n          keli = 1;\r\n        }\r\n\r\n        /* 加入最大的拉动长度 */\r\n        if (keli > self.$props.ListData.length) {\r\n          keli = self.$props.ListData.length;\r\n        }\r\n\r\n        self.$data.currentPage = keli;\r\n        // console.log(\"tyop\", top);\r\n        // console.log(\"top / 40\", top / 40);\r\n        // console.log(\"keli\", keli);\r\n        self.$scroll.scrollTo(0, keli * 40);\r\n        self.$emit(\"callback\", {\r\n          key: self.$data.currentPage - 1,\r\n          value: self.$props.ListData[self.$data.currentPage - 1]\r\n        });\r\n      }\r\n    });\r\n    self.$scroll.setDimensions(\r\n      this.dom_container.clientWidth,\r\n      this.dom_container.clientHeight,\r\n      this.dom_content.clientWidth,\r\n      this.dom_content.clientHeight + 30 * 3\r\n    );\r\n    /* 一开始滚动3个 */\r\n    this.$data.currentPage = 3;\r\n    self.$scroll.scrollTo(0, this.$data.currentPage * 40);\r\n  }\r\n};\r\n</script>\r\n<style scoped>\r\n._center_mark {\r\n  position: absolute;\r\n  height: 40px;\r\n  background: #222;\r\n  opacity: 0.5;\r\n  width: 100%;\r\n  top: 80px;\r\n}\r\n.t-pick-container {\r\n  height: 200px;\r\n  overflow: hidden;\r\n  -webkit-user-select: none;\r\n  -moz-user-select: none;\r\n  -ms-user-select: none;\r\n  -o-user-select: none;\r\n  user-select: none;\r\n}\r\n.t-pick-content {\r\n  -webkit-transform-origin: left top;\r\n  -webkit-transform: translateZ(0);\r\n  -moz-transform-origin: left top;\r\n  -moz-transform: translateZ(0);\r\n  -ms-transform-origin: left top;\r\n  -ms-transform: translateZ(0);\r\n  -o-transform-origin: left top;\r\n  -o-transform: translateZ(0);\r\n  transform-origin: left top;\r\n  transform: translateZ(0);\r\n}\r\n.t-pick {\r\n  position: absolute;\r\n  z-index: 99;\r\n  width: 100%;\r\n  height: 200px;\r\n  bottom: 0px;\r\n  background: #eeee;\r\n}\r\n</style>"],"sourceRoot":""}]);
+exports.push([module.i, "\n._center_mark[data-v-1e22edd9] {\r\n  position: absolute;\r\n  height: 40px;\r\n  background: #222;\r\n  opacity: 0.5;\r\n  width: 100%;\r\n  top: 80px;\n}\n.t-pick-container[data-v-1e22edd9] {\r\n  height: 200px;\r\n  overflow: hidden;\r\n  -webkit-user-select: none;\r\n  -o-user-select: none;\r\n  user-select: none;\n}\n.t-pick-content[data-v-1e22edd9] {\r\n  -webkit-transform-origin: left top;\r\n  -webkit-transform: translateZ(0);\r\n  -moz-transform-origin: left top;\r\n  -moz-transform: translateZ(0);\r\n  -ms-transform-origin: left top;\r\n  -ms-transform: translateZ(0);\r\n  -o-transform-origin: left top;\r\n  -o-transform: translateZ(0);\r\n  transform-origin: left top;\r\n  transform: translateZ(0);\n}\n.t-pick[data-v-1e22edd9] {\r\n  position: absolute;\r\n  z-index: 99;\r\n  width: 100%;\r\n  height: 200px;\r\n  bottom: 0px;\r\n  background: #eeee;\n}\r\n", "", {"version":3,"sources":["C:/phpStudy/WWW/tai-vue-ui/application/index/view/components/pick/application/index/view/components/pick/pick.vue"],"names":[],"mappings":";AAiHA;EACA,mBAAA;EACA,aAAA;EACA,iBAAA;EACA,aAAA;EACA,YAAA;EACA,UAAA;CACA;AACA;EACA,cAAA;EACA,iBAAA;EACA,0BAAA;EAGA,qBAAA;EACA,kBAAA;CACA;AACA;EACA,mCAAA;EACA,iCAAA;EACA,gCAAA;EACA,8BAAA;EACA,+BAAA;EACA,6BAAA;EACA,8BAAA;EACA,4BAAA;EACA,2BAAA;EACA,yBAAA;CACA;AACA;EACA,mBAAA;EACA,YAAA;EACA,YAAA;EACA,cAAA;EACA,YAAA;EACA,kBAAA;CACA","file":"pick.vue","sourcesContent":["<template>\r\n  <div class=\"t-pick t-pick-container\" ref=\"container\" :show=\"show\">\r\n    <div class=\"t-pick-content\" ref=\"content\">\r\n      <t-pick-item v-for=\"(item,key) in 3\" :key=\"key+'none'\"> </t-pick-item>\r\n      <t-pick-item v-for=\"(item,key) in ListData\" :key=\"key\">\r\n        {{ListItemKey?item[ListItemKey]:item}}\r\n      </t-pick-item>\r\n    </div>\r\n    <div class=\"_center_mark\"></div>\r\n  </div>\r\n\r\n</template>\r\n<script>\r\n/* 1.生成mark */\r\n/* 2.生成底部div */\r\n/* 3.根据数据生成scroll */\r\n/* 4,操作滚动，一个一个滚动 */\r\nimport Scroll from \"../scroll/scroll\";\r\nexport default {\r\n  name: \"t-pick\",\r\n  data() {\r\n    return {\r\n      currentPage: 2,\r\n      childContext: null\r\n    };\r\n  },\r\n  props: {\r\n    show: Boolean,\r\n    ListData: Array,\r\n    ListItemKey: String,\r\n    value: {\r\n      type: [String, Number],\r\n      default: null\r\n    }\r\n  },\r\n  methods: {\r\n    findCurrentPageByValue() {\r\n      var self = this;\r\n      var value = this.$props.value;\r\n      var index = false;\r\n      if (value) {\r\n        self.$props.ListData.forEach((item, _index) => {\r\n          if (item == value) {\r\n            index = _index;\r\n          }\r\n        });\r\n        return index+1;\r\n      } else {\r\n        return undefined;\r\n      }\r\n    }\r\n  },\r\n  mounted() {\r\n    var self = this;\r\n    this.$mark();\r\n    this.dom_container = this.$refs[\"container\"];\r\n    this.dom_content = this.$refs[\"content\"];\r\n    self.$scroll = new Scroll(this.dom_container, this.dom_content, {\r\n      start({ top }) {\r\n        /* 加入方向判断，让操作更加准确 */\r\n        this.currentTop = top;\r\n      },\r\n      move({ top }) {\r\n        if (top - this.currentTop > 0) {\r\n          this.dire = \"up\";\r\n        } else {\r\n          this.dire = \"down\";\r\n        }\r\n        this.currentTop = top;\r\n      },\r\n      end({ top }) {\r\n        // console.log(this.dire);\r\n        var keli = Math.ceil(top / 40);\r\n        if (this.dire == \"down\") {\r\n          keli = Math.round(top / 40);\r\n        }\r\n\r\n        if (keli <= 0) {\r\n          keli = 1;\r\n        }\r\n\r\n        /* 加入最大的拉动长度 */\r\n        if (keli > self.$props.ListData.length) {\r\n          keli = self.$props.ListData.length;\r\n        }\r\n\r\n        self.$data.currentPage = keli;\r\n        // console.log(\"tyop\", top);\r\n        // console.log(\"top / 40\", top / 40);\r\n        // console.log(\"keli\", keli);\r\n        self.$scroll.scrollTo(0, keli * 40);\r\n        self.$emit(\"callback\", {\r\n          key: self.$data.currentPage - 1,\r\n          value: self.$props.ListData[self.$data.currentPage - 1]\r\n        });\r\n      }\r\n    });\r\n    self.$scroll.setDimensions(\r\n      this.dom_container.clientWidth,\r\n      this.dom_container.clientHeight,\r\n      this.dom_content.clientWidth,\r\n      this.dom_content.clientHeight + 30 * 3\r\n    );\r\n    /* 一开始滚动3个 */\r\n    /* 加入一开始根据value得到currentPage */\r\n    this.$data.currentPage = this.findCurrentPageByValue(this.$props.value)\r\n      ? this.findCurrentPageByValue(this.$props.value)\r\n      : 3;\r\n    self.$scroll.scrollTo(0, this.$data.currentPage * 40);\r\n  }\r\n};\r\n</script>\r\n<style scoped>\r\n._center_mark {\r\n  position: absolute;\r\n  height: 40px;\r\n  background: #222;\r\n  opacity: 0.5;\r\n  width: 100%;\r\n  top: 80px;\r\n}\r\n.t-pick-container {\r\n  height: 200px;\r\n  overflow: hidden;\r\n  -webkit-user-select: none;\r\n  -moz-user-select: none;\r\n  -ms-user-select: none;\r\n  -o-user-select: none;\r\n  user-select: none;\r\n}\r\n.t-pick-content {\r\n  -webkit-transform-origin: left top;\r\n  -webkit-transform: translateZ(0);\r\n  -moz-transform-origin: left top;\r\n  -moz-transform: translateZ(0);\r\n  -ms-transform-origin: left top;\r\n  -ms-transform: translateZ(0);\r\n  -o-transform-origin: left top;\r\n  -o-transform: translateZ(0);\r\n  transform-origin: left top;\r\n  transform: translateZ(0);\r\n}\r\n.t-pick {\r\n  position: absolute;\r\n  z-index: 99;\r\n  width: 100%;\r\n  height: 200px;\r\n  bottom: 0px;\r\n  background: #eeee;\r\n}\r\n</style>"],"sourceRoot":""}]);
 
 // exports
 
@@ -4675,40 +4691,21 @@ exports.push([module.i, "\n._center_mark[data-v-1e22edd9] {\r\n  position: absol
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _vue = __webpack_require__(3);
-
-var _vue2 = _interopRequireDefault(_vue);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = new _vue2.default();
-
-/***/ }),
-/* 79 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = tScroll;
 
-var _Animate = __webpack_require__(80);
+var _Animate = __webpack_require__(79);
 
 var _Animate2 = _interopRequireDefault(_Animate);
 
-var _Scroller = __webpack_require__(81);
+var _Scroller = __webpack_require__(80);
 
 var _Scroller2 = _interopRequireDefault(_Scroller);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var renderUtil = __webpack_require__(82).default;
+var renderUtil = __webpack_require__(81).default;
 /*使用
 * new Scroll(container,content,{
 * start:function(){},
@@ -4819,7 +4816,7 @@ function tScroll(container, content, opt) {
 // }, 500);
 
 /***/ }),
-/* 80 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5057,7 +5054,7 @@ function tScroll(container, content, opt) {
 })(window);
 
 /***/ }),
-/* 81 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6343,7 +6340,7 @@ var Scroller;
 exports.default = Scroller;
 
 /***/ }),
-/* 82 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6399,7 +6396,7 @@ function renderUtil(content) {
 }
 
 /***/ }),
-/* 83 */
+/* 82 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6452,7 +6449,7 @@ if (false) {
 }
 
 /***/ }),
-/* 84 */
+/* 83 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6460,11 +6457,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_pick_item_vue__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_pick_item_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_pick_item_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_pick_item_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_pick_item_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_1_vue_loader_lib_template_compiler_index_id_data_v_31cf42e9_hasScoped_true_buble_transforms_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_template_index_0_pick_item_vue__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_1_vue_loader_lib_template_compiler_index_id_data_v_31cf42e9_hasScoped_true_buble_transforms_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_template_index_0_pick_item_vue__ = __webpack_require__(86);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(85)
+  __webpack_require__(84)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -6510,13 +6507,13 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 85 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(86);
+var content = __webpack_require__(85);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -6536,7 +6533,7 @@ if(false) {
 }
 
 /***/ }),
-/* 86 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(true);
@@ -6550,7 +6547,7 @@ exports.push([module.i, "\n.t-pick-item[data-v-31cf42e9] {\r\n  display: -webkit
 
 
 /***/ }),
-/* 87 */
+/* 86 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

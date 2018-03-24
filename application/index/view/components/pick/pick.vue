@@ -29,7 +29,7 @@ export default {
     ListData: Array,
     ListItemKey: String,
     value: {
-      type: [String, Number],
+      type: [String, Number, Object],
       default: null
     }
   },
@@ -38,13 +38,21 @@ export default {
       var self = this;
       var value = this.$props.value;
       var index = false;
+      var listItemKey = self.$props.ListItemKey;
       if (value) {
         self.$props.ListData.forEach((item, _index) => {
-          if (item == value) {
-            index = _index;
+          /* 加入listItemKey判断 */
+          if (listItemKey) {
+            if (item[listItemKey] == value[listItemKey]) {
+              index = _index;
+            }
+          } else {
+            if (item == value) {
+              index = _index;
+            }
           }
-        });
-        return index+1;
+        });//end：foreach
+        return index + 1;
       } else {
         return undefined;
       }

@@ -1,7 +1,7 @@
 <template>
   <div>
     result: key:{{result}}
-    <t-pick :ListData="lists" @callback="callback" :value="pick_value"></t-pick>
+    <t-pick :ListData="lists" ListItemKey="value" @callback="callback" :value="pick_value"></t-pick>
   </div>
 </template>
 <script>
@@ -9,9 +9,20 @@ import Bus from "../../util/bus";
 export default {
   data() {
     return {
-      lists: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      lists: [
+        { id: 0, value: 0 },
+        { id: 1, value: 1 },
+        { id: 2, value: 2 },
+        { id: 3, value: 3 },
+        { id: 4, value: 4 },
+        { id: 5, value: 5 },
+        { id: 6, value: 6 },
+        { id: 7, value: 7 },
+        { id: 8, value: 8 },
+        { id: 9, value: 9 }
+      ],
       result: { value: 0, key: 0 },
-      pick_value: 4
+      pick_value:  { id: 9, value: 9 },
     };
   },
   created() {},

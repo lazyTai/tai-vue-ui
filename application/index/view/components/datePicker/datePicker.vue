@@ -54,11 +54,11 @@ export default {
   },
   data() {
     var currnetDate = new Date();
-    var currentYear = currnetDate.getFullYear();
-    var currentMonth = currnetDate.getMonth() + 1;
-    var currentDay = currnetDate.getDate();
+    var currentYear = this.$props.year;
+    var currentMonth = this.$props.month;
+    var currentDay = this.$props.day;
     var years = [];
-    for (var i = currentYear - 10; i < currentYear + 10; i++) {
+    for (var i = currentYear - 10; i < parseInt(currentYear) + 10; i++) {
       years.push(i);
     }
     var months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];

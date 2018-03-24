@@ -1,7 +1,7 @@
 <template>
     <div class="datepick">
         result:{{value}}
-        <t-date-picker @callback="callback"></t-date-picker>
+        <t-date-picker year='2011' month="11" day='4' @callback="callback"></t-date-picker>
     </div>
 </template>
 

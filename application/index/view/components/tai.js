@@ -12,7 +12,7 @@ import { DateTimePicker } from './datetimePicker/index'
 import { Swiper } from './swiper/index'
 import { Loading } from './loading/index'
 import { CellGroup, CellItem } from './cell/index'
-import { Input, } from './input/index'
+import { Input, ExpTypes } from './input/index'
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
 }, false);
@@ -40,6 +40,8 @@ const install = function (Vue) {
 
     Vue.prototype.$toast = Toast;
     Vue.prototype.$mark = Mark;
+    Vue.prototype.$expTypes = ExpTypes;
+
 
 };
 

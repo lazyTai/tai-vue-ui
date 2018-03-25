@@ -3837,6 +3837,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
   name: "t-cell-item",
@@ -3879,6 +3880,9 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
 
 exports.default = {
   name: "t-cell-group",
@@ -3897,6 +3901,15 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _util = __webpack_require__(193);
+
+var _underscore = __webpack_require__(4);
+
+var _underscore2 = _interopRequireDefault(_underscore);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 //
 //
 //
@@ -3927,6 +3940,38 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 
+/* 
+验证数字的正则表达式集 
+验证数字：^[0-9]*$ 
+验证n位的数字：^\d{n}$ 
+验证至少n位数字：^\d{n,}$ 
+验证m-n位的数字：^\d{m,n}$ 
+验证零和非零开头的数字：^(0|[1-9][0-9]*)$ 
+验证有两位小数的正实数：^[0-9]+(.[0-9]{2})?$ 
+验证有1-3位小数的正实数：^[0-9]+(.[0-9]{1,3})?$ 
+验证非零的正整数：^\+?[1-9][0-9]*$ 
+验证非零的负整数：^\-[1-9][0-9]*$ 
+验证非负整数（正整数 + 0） ^\d+$ 
+验证非正整数（负整数 + 0） ^((-\d+)|(0+))$ 
+验证长度为3的字符：^.{3}$ 
+验证由26个英文字母组成的字符串：^[A-Za-z]+$ 
+验证由26个大写英文字母组成的字符串：^[A-Z]+$ 
+验证由26个小写英文字母组成的字符串：^[a-z]+$ 
+验证由数字和26个英文字母组成的字符串：^[A-Za-z0-9]+$ 
+验证由数字、26个英文字母或者下划线组成的字符串：^\w+$ 
+验证用户密码:^[a-zA-Z]\w{5,17}$ 正确格式为：以字母开头，长度在6-18之间，只能包含字符、数字和下划线。 
+验证是否含有 ^%&',;=?$\" 等字符：[^%&',;=?$\x22]+ 
+验证汉字：^[\u4e00-\u9fa5],{0,}$ 
+验证Email地址：/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/
+验证InternetURL：^http://([\w-]+\.)+[\w-]+(/[\w-./?%&=]*)?$ ；^[a-zA-z]+://(w+(-w+)*)(.(w+(-w+)*))*(?S*)?$ 
+验证电话号码：^(\(\d{3,4}\)|\d{3,4}-)?\d{7,8}$：--正确格式为：XXXX-XXXXXXX，XXXX-XXXXXXXX，XXX-XXXXXXX，XXX-XXXXXXXX，XXXXXXX，XXXXXXXX。 
+验证身份证号（15位或18位数字）：^\d{15}|\d{}18$ 
+验证一年的12个月：^(0?[1-9]|1[0-2])$ 正确格式为：“01”-“09”和“1”“12” 
+验证一个月的31天：^((0?[1-9])|((1|2)[0-9])|30|31)$ 正确格式为：01、09和1、31。 
+整数：^-?\d+$ 
+不为空：/\S/
+
+*/
 exports.default = {
   name: "t-input",
   data: function data() {
@@ -3936,21 +3981,19 @@ exports.default = {
   },
 
   props: {
+    validate: {
+      type: [String, Array],
+      default: function _default() {
+        return [];
+      }
+    },
     value: {
       type: [String, Number],
       default: ""
     },
-    required: {
-      type: Boolean,
-      default: false
-    },
     placeholder: {
       type: String,
       default: "请输入"
-    },
-    error: {
-      type: String,
-      default: ""
     }
   },
   mounted: function mounted() {
@@ -3958,20 +4001,23 @@ exports.default = {
   },
 
   computed: {
-    isError: function isError() {
-      var required = this.$props.required;
+    validateInfor: function validateInfor() {
+      var _validateInfor = { isError: false, errors: [] };
+      var validate = this.$props.validate;
       var defaultValue = this.$data.defaultValue;
 
-      if (required) {
-        // console.log("defaultValue", defaultValue);
-        if (defaultValue) {
-          //   console.log("isError", true);
-          return true;
+      _underscore2.default.each(validate, function (item) {
+        var isError = (0, _util.isShit)(item.exp, defaultValue);
+        // console.log("item.exp", item.exp);
+        // console.log("isError", isError);
+        if (isError) {
+          _underscore2.default.without(_validateInfor.errors, item.error);
         } else {
-          //   console.log("isError", false);
-          return false;
+          _validateInfor.errors.push(item.error);
+          _validateInfor.isError = isError;
         }
-      }
+      });
+      return _validateInfor;
     }
   },
   methods: {
@@ -4052,6 +4098,7 @@ var install = function install(Vue) {
 
     Vue.prototype.$toast = _index5.Toast;
     Vue.prototype.$mark = _mark.Mark;
+    Vue.prototype.$expTypes = _index12.ExpTypes;
 };
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -8646,7 +8693,7 @@ exports = module.exports = __webpack_require__(1)(true);
 
 
 // module
-exports.push([module.i, "\n.t-cell-item[data-v-b81cf8a8] {\r\n  background: #fff;\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-align-self: center;\r\n          align-self: center;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\r\n  height: 70px;\r\n  /* line-height: 45px; */\n}\n.t-cell-item .icon[data-v-b81cf8a8] {\r\n  width: 30px;\r\n  height: 30px;\n}\n.t-cell-item .left[data-v-b81cf8a8] {\r\n  min-width: 30px;\r\n  padding-right: 5px;\n}\n.t-cell-item .right[data-v-b81cf8a8] {\r\n  -webkit-box-flex: 1;\r\n  -webkit-flex: 1;\r\n          flex: 1;\n}\n.t-cell-item .arrow[data-v-b81cf8a8] {\r\n  width: 30px;\r\n  height: 30px;\n}\r\n", "", {"version":3,"sources":["C:/phpStudy/WWW/tai-vue-ui/application/index/view/components/cell/application/index/view/components/cell/cellItem.vue"],"names":[],"mappings":";AAiBA;EACA,iBAAA;EACA,qBAAA;EAAA,sBAAA;EAAA,cAAA;EACA,2BAAA;UAAA,mBAAA;EACA,0BAAA;EAAA,4BAAA;UAAA,oBAAA;EACA,aAAA;EACA,wBAAA;CACA;AACA;EACA,YAAA;EACA,aAAA;CACA;AACA;EACA,gBAAA;EACA,mBAAA;CACA;AACA;EACA,oBAAA;EAAA,gBAAA;UAAA,QAAA;CACA;AACA;EACA,YAAA;EACA,aAAA;CACA","file":"cellItem.vue","sourcesContent":["<template>\r\n    <div class=\"t-cell-item\">\r\n        <div class=\"icon\">\r\n            <slot name=\"icon\" />\r\n        </div>\r\n        <div class=\"left\">\r\n            <slot name=\"left\" />\r\n        </div>\r\n        <div class=\"right\">\r\n            <slot name=\"right\" />\r\n        </div>\r\n        <div class=\"arrow\" :show=\"arrow\">\r\n            <t-icon icon=\"right-arrow\"></t-icon>\r\n        </div>\r\n    </div>\r\n</template>\r\n<style scoped>\r\n.t-cell-item {\r\n  background: #fff;\r\n  display: flex;\r\n  align-self: center;\r\n  align-items: center;\r\n  height: 70px;\r\n  /* line-height: 45px; */\r\n}\r\n.t-cell-item .icon {\r\n  width: 30px;\r\n  height: 30px;\r\n}\r\n.t-cell-item .left {\r\n  min-width: 30px;\r\n  padding-right: 5px;\r\n}\r\n.t-cell-item .right {\r\n  flex: 1;\r\n}\r\n.t-cell-item .arrow {\r\n  width: 30px;\r\n  height: 30px;\r\n}\r\n</style>\r\n\r\n<script>\r\nexport default {\r\n  name: \"t-cell-item\",\r\n  props: {\r\n    arrow: {\r\n      type: Boolean,\r\n      default: false\r\n    }\r\n  }\r\n};\r\n</script>"],"sourceRoot":""}]);
+exports.push([module.i, "\n.t-cell-item[data-v-b81cf8a8] {\r\n  background: #fff;\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-align-self: center;\r\n          align-self: center;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\r\n  height: 75px;\r\n  border: 1px solid #eee;\r\n  /* line-height: 45px; */\n}\n.t-cell-item .icon[data-v-b81cf8a8] {\r\n  width: 30px;\r\n  height: 30px;\n}\n.t-cell-item .left[data-v-b81cf8a8] {\r\n  min-width: 30px;\r\n  padding-right: 5px;\n}\n.t-cell-item .right[data-v-b81cf8a8] {\r\n  -webkit-box-flex: 1;\r\n  -webkit-flex: 1;\r\n          flex: 1;\n}\n.t-cell-item .arrow[data-v-b81cf8a8] {\r\n  width: 30px;\r\n  height: 30px;\n}\r\n", "", {"version":3,"sources":["C:/phpStudy/WWW/tai-vue-ui/application/index/view/components/cell/application/index/view/components/cell/cellItem.vue"],"names":[],"mappings":";AAiBA;EACA,iBAAA;EACA,qBAAA;EAAA,sBAAA;EAAA,cAAA;EACA,2BAAA;UAAA,mBAAA;EACA,0BAAA;EAAA,4BAAA;UAAA,oBAAA;EACA,aAAA;EACA,uBAAA;EACA,wBAAA;CACA;AACA;EACA,YAAA;EACA,aAAA;CACA;AACA;EACA,gBAAA;EACA,mBAAA;CACA;AACA;EACA,oBAAA;EAAA,gBAAA;UAAA,QAAA;CACA;AACA;EACA,YAAA;EACA,aAAA;CACA","file":"cellItem.vue","sourcesContent":["<template>\r\n    <div class=\"t-cell-item\">\r\n        <div class=\"icon\">\r\n            <slot name=\"icon\" />\r\n        </div>\r\n        <div class=\"left\">\r\n            <slot name=\"left\" />\r\n        </div>\r\n        <div class=\"right\">\r\n            <slot name=\"right\" />\r\n        </div>\r\n        <div class=\"arrow\" :show=\"arrow\">\r\n            <t-icon icon=\"right-arrow\"></t-icon>\r\n        </div>\r\n    </div>\r\n</template>\r\n<style scoped>\r\n.t-cell-item {\r\n  background: #fff;\r\n  display: flex;\r\n  align-self: center;\r\n  align-items: center;\r\n  height: 75px;\r\n  border: 1px solid #eee;\r\n  /* line-height: 45px; */\r\n}\r\n.t-cell-item .icon {\r\n  width: 30px;\r\n  height: 30px;\r\n}\r\n.t-cell-item .left {\r\n  min-width: 30px;\r\n  padding-right: 5px;\r\n}\r\n.t-cell-item .right {\r\n  flex: 1;\r\n}\r\n.t-cell-item .arrow {\r\n  width: 30px;\r\n  height: 30px;\r\n}\r\n</style>\r\n\r\n<script>\r\nexport default {\r\n  name: \"t-cell-item\",\r\n  props: {\r\n    arrow: {\r\n      type: Boolean,\r\n      default: false\r\n    }\r\n  }\r\n};\r\n</script>"],"sourceRoot":""}]);
 
 // exports
 
@@ -8695,11 +8742,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_cellGroup_vue__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_cellGroup_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_cellGroup_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_cellGroup_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_cellGroup_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_1_vue_loader_lib_template_compiler_index_id_data_v_041a2a36_hasScoped_true_buble_transforms_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_template_index_0_cellGroup_vue__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_1_vue_loader_lib_template_compiler_index_id_data_v_041a2a36_hasScoped_false_buble_transforms_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_template_index_0_cellGroup_vue__ = __webpack_require__(197);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(125)
+  __webpack_require__(195)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -8712,12 +8759,12 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-041a2a36"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_cellGroup_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_1_vue_loader_lib_template_compiler_index_id_data_v_041a2a36_hasScoped_true_buble_transforms_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_template_index_0_cellGroup_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_1_vue_loader_lib_template_compiler_index_id_data_v_041a2a36_hasScoped_false_buble_transforms_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_template_index_0_cellGroup_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -8745,79 +8792,9 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 125 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(126);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("078943af", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/_css-loader@0.28.11@css-loader/index.js?sourceMap!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-041a2a36\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./cellGroup.vue", function() {
-     var newContent = require("!!../../../../../node_modules/_css-loader@0.28.11@css-loader/index.js?sourceMap!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-041a2a36\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./cellGroup.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 126 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(true);
-// imports
-
-
-// module
-exports.push([module.i, "\n.t-cell-group[data-v-041a2a36] {\r\n  padding: 10px;\r\n  margin-top: 25px;\n}\n.t-cell-group-title[data-v-041a2a36] {\r\n  font-size: 15px;\r\n  color: #ccc;\r\n  margin-bottom: 5px;\n}\r\n", "", {"version":3,"sources":["C:/phpStudy/WWW/tai-vue-ui/application/index/view/components/cell/application/index/view/components/cell/cellGroup.vue"],"names":[],"mappings":";AAUA;EACA,cAAA;EACA,iBAAA;CACA;AACA;EACA,gBAAA;EACA,YAAA;EACA,mBAAA;CACA","file":"cellGroup.vue","sourcesContent":["<template>\r\n  <div class=\"t-cell-group\">\r\n    <div class=\"t-cell-group-title\">\r\n      {{$props.title}}\r\n    </div>\r\n    <slot />\r\n  </div>\r\n</template>\r\n\r\n<style scoped>\r\n.t-cell-group {\r\n  padding: 10px;\r\n  margin-top: 25px;\r\n}\r\n.t-cell-group-title {\r\n  font-size: 15px;\r\n  color: #ccc;\r\n  margin-bottom: 5px;\r\n}\r\n</style>\r\n\r\n<script>\r\nexport default {\r\n  name: \"t-cell-group\",\r\n  props: {\r\n    title: String\r\n  }\r\n};\r\n</script>\r\n"],"sourceRoot":""}]);
-
-// exports
-
-
-/***/ }),
-/* 127 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "t-cell-group" },
-    [
-      _c("div", { staticClass: "t-cell-group-title" }, [
-        _vm._v("\n    " + _vm._s(_vm.$props.title) + "\n  ")
-      ]),
-      _vm._v(" "),
-      _vm._t("default")
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-041a2a36", esExports)
-  }
-}
-
-/***/ }),
+/* 125 */,
+/* 126 */,
+/* 127 */,
 /* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8827,15 +8804,22 @@ if (false) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.Input = undefined;
+exports.ExpTypes = exports.Input = undefined;
 
 var _input = __webpack_require__(129);
 
 var _input2 = _interopRequireDefault(_input);
 
+var _exps = __webpack_require__(194);
+
+var ExpTypes = _interopRequireWildcard(_exps);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.Input = _input2.default;
+exports.ExpTypes = ExpTypes;
 
 /***/ }),
 /* 129 */
@@ -8930,7 +8914,7 @@ exports = module.exports = __webpack_require__(1)(true);
 
 
 // module
-exports.push([module.i, "\n.t-input input[data-v-56d79cd5] {\r\n  border: none;\r\n  height: 40px;\r\n  line-height: 40px;\r\n  text-indent: 5px;\r\n  outline: none;\r\n  width: 100%;\r\n  font-size: 15px;\r\n  margin-top: 13px;\n}\n.t-input .error[data-v-56d79cd5] {\r\n  font-size: 12px;\r\n  height: 12px;\r\n  color: brown;\r\n  text-align: right;\n}\r\n", "", {"version":3,"sources":["C:/phpStudy/WWW/tai-vue-ui/application/index/view/components/input/application/index/view/components/input/input.vue"],"names":[],"mappings":";AAWA;EACA,aAAA;EACA,aAAA;EACA,kBAAA;EACA,iBAAA;EACA,cAAA;EACA,YAAA;EACA,gBAAA;EACA,iBAAA;CACA;AACA;EACA,gBAAA;EACA,aAAA;EACA,aAAA;EACA,kBAAA;CACA","file":"input.vue","sourcesContent":["<template>\r\n    <div class=\"t-input\">\r\n        <input type=\"text\" :placeholder=\"placeholder\" @input=\"change_value\" />\r\n        <div class=\"error\">\r\n            <div v-show=\"!isError\">\r\n                {{error}}\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n<style scoped>\r\n.t-input input {\r\n  border: none;\r\n  height: 40px;\r\n  line-height: 40px;\r\n  text-indent: 5px;\r\n  outline: none;\r\n  width: 100%;\r\n  font-size: 15px;\r\n  margin-top: 13px;\r\n}\r\n.t-input .error {\r\n  font-size: 12px;\r\n  height: 12px;\r\n  color: brown;\r\n  text-align: right;\r\n}\r\n</style>\r\n\r\n<script>\r\nexport default {\r\n  name: \"t-input\",\r\n  data() {\r\n    return {\r\n      defaultValue: \"\"\r\n    };\r\n  },\r\n  props: {\r\n    value: {\r\n      type: [String, Number],\r\n      default: \"\"\r\n    },\r\n    required: {\r\n      type: Boolean,\r\n      default: false\r\n    },\r\n    placeholder: {\r\n      type: String,\r\n      default: \"请输入\"\r\n    },\r\n    error: {\r\n      type: String,\r\n      default: \"\"\r\n    }\r\n  },\r\n  mounted() {\r\n    this.$data.defaultValue = this.$props.value;\r\n  },\r\n  computed: {\r\n    isError() {\r\n      var { required } = this.$props;\r\n      var { defaultValue } = this.$data;\r\n      if (required) {\r\n        // console.log(\"defaultValue\", defaultValue);\r\n        if (defaultValue) {\r\n          //   console.log(\"isError\", true);\r\n          return true;\r\n        } else {\r\n          //   console.log(\"isError\", false);\r\n          return false;\r\n        }\r\n      }\r\n    }\r\n  },\r\n  methods: {\r\n    change_value(e) {\r\n      //   console.log(\"change_value\", e.target.value);\r\n      this.$data.defaultValue = e.target.value;\r\n      this.$emit(\"input\", e.target.value);\r\n    }\r\n  }\r\n};\r\n</script>\r\n\r\n"],"sourceRoot":""}]);
+exports.push([module.i, "\n.t-input input[data-v-56d79cd5] {\r\n  border: none;\r\n  height: 40px;\r\n  line-height: 40px;\r\n  text-indent: 5px;\r\n  outline: none;\r\n  width: 100%;\r\n  font-size: 15px;\r\n  margin-top: 13px;\n}\n.t-input .error[data-v-56d79cd5] {\r\n  font-size: 12px;\r\n  height: 12px;\r\n  color: brown;\r\n  text-align: right;\n}\r\n", "", {"version":3,"sources":["C:/phpStudy/WWW/tai-vue-ui/application/index/view/components/input/application/index/view/components/input/input.vue"],"names":[],"mappings":";AAWA;EACA,aAAA;EACA,aAAA;EACA,kBAAA;EACA,iBAAA;EACA,cAAA;EACA,YAAA;EACA,gBAAA;EACA,iBAAA;CACA;AACA;EACA,gBAAA;EACA,aAAA;EACA,aAAA;EACA,kBAAA;CACA","file":"input.vue","sourcesContent":["<template>\r\n    <div class=\"t-input\">\r\n        <input type=\"text\" :placeholder=\"placeholder\" @input=\"change_value\" />\r\n        <div class=\"error\">\r\n            <div v-show=\"!validateInfor.isError\">\r\n                {{validateInfor.errors.toString()}}\r\n            </div>\r\n        </div>\r\n    </div>\r\n</template>\r\n<style scoped>\r\n.t-input input {\r\n  border: none;\r\n  height: 40px;\r\n  line-height: 40px;\r\n  text-indent: 5px;\r\n  outline: none;\r\n  width: 100%;\r\n  font-size: 15px;\r\n  margin-top: 13px;\r\n}\r\n.t-input .error {\r\n  font-size: 12px;\r\n  height: 12px;\r\n  color: brown;\r\n  text-align: right;\r\n}\r\n</style>\r\n\r\n<script>\r\n/* \r\n验证数字的正则表达式集 \r\n验证数字：^[0-9]*$ \r\n验证n位的数字：^\\d{n}$ \r\n验证至少n位数字：^\\d{n,}$ \r\n验证m-n位的数字：^\\d{m,n}$ \r\n验证零和非零开头的数字：^(0|[1-9][0-9]*)$ \r\n验证有两位小数的正实数：^[0-9]+(.[0-9]{2})?$ \r\n验证有1-3位小数的正实数：^[0-9]+(.[0-9]{1,3})?$ \r\n验证非零的正整数：^\\+?[1-9][0-9]*$ \r\n验证非零的负整数：^\\-[1-9][0-9]*$ \r\n验证非负整数（正整数 + 0） ^\\d+$ \r\n验证非正整数（负整数 + 0） ^((-\\d+)|(0+))$ \r\n验证长度为3的字符：^.{3}$ \r\n验证由26个英文字母组成的字符串：^[A-Za-z]+$ \r\n验证由26个大写英文字母组成的字符串：^[A-Z]+$ \r\n验证由26个小写英文字母组成的字符串：^[a-z]+$ \r\n验证由数字和26个英文字母组成的字符串：^[A-Za-z0-9]+$ \r\n验证由数字、26个英文字母或者下划线组成的字符串：^\\w+$ \r\n验证用户密码:^[a-zA-Z]\\w{5,17}$ 正确格式为：以字母开头，长度在6-18之间，只能包含字符、数字和下划线。 \r\n验证是否含有 ^%&',;=?$\\\" 等字符：[^%&',;=?$\\x22]+ \r\n验证汉字：^[\\u4e00-\\u9fa5],{0,}$ \r\n验证Email地址：/^([a-zA-Z0-9]+[_|\\_|\\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\\_|\\.]?)*[a-zA-Z0-9]+\\.[a-zA-Z]{2,3}$/\r\n验证InternetURL：^http://([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?$ ；^[a-zA-z]+://(w+(-w+)*)(.(w+(-w+)*))*(?S*)?$ \r\n验证电话号码：^(\\(\\d{3,4}\\)|\\d{3,4}-)?\\d{7,8}$：--正确格式为：XXXX-XXXXXXX，XXXX-XXXXXXXX，XXX-XXXXXXX，XXX-XXXXXXXX，XXXXXXX，XXXXXXXX。 \r\n验证身份证号（15位或18位数字）：^\\d{15}|\\d{}18$ \r\n验证一年的12个月：^(0?[1-9]|1[0-2])$ 正确格式为：“01”-“09”和“1”“12” \r\n验证一个月的31天：^((0?[1-9])|((1|2)[0-9])|30|31)$ 正确格式为：01、09和1、31。 \r\n整数：^-?\\d+$ \r\n不为空：/\\S/\r\n\r\n*/\r\nimport { isEmail, isShit } from \"./util\";\r\nimport _ from \"underscore\";\r\nexport default {\r\n  name: \"t-input\",\r\n  data() {\r\n    return {\r\n      defaultValue: \"\"\r\n    };\r\n  },\r\n  props: {\r\n    validate: {\r\n      type: [String, Array],\r\n      default: () => {\r\n        return [];\r\n      }\r\n    },\r\n    value: {\r\n      type: [String, Number],\r\n      default: \"\"\r\n    },\r\n    placeholder: {\r\n      type: String,\r\n      default: \"请输入\"\r\n    }\r\n  },\r\n  mounted() {\r\n    this.$data.defaultValue = this.$props.value;\r\n  },\r\n  computed: {\r\n    validateInfor() {\r\n      var _validateInfor = { isError: false, errors: [] };\r\n      var { validate } = this.$props;\r\n      var { defaultValue } = this.$data;\r\n      _.each(validate, function(item) {\r\n        var isError = isShit(item.exp, defaultValue);\r\n        // console.log(\"item.exp\", item.exp);\r\n        // console.log(\"isError\", isError);\r\n        if (isError) {\r\n          _.without(_validateInfor.errors, item.error);\r\n        } else {\r\n          _validateInfor.errors.push(item.error);\r\n          _validateInfor.isError = isError;\r\n        }\r\n      });\r\n      return _validateInfor;\r\n    }\r\n  },\r\n  methods: {\r\n    change_value(e) {\r\n      //   console.log(\"change_value\", e.target.value);\r\n      this.$data.defaultValue = e.target.value;\r\n      this.$emit(\"input\", e.target.value);\r\n    }\r\n  }\r\n};\r\n</script>\r\n\r\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -8958,12 +8942,18 @@ var render = function() {
             {
               name: "show",
               rawName: "v-show",
-              value: !_vm.isError,
-              expression: "!isError"
+              value: !_vm.validateInfor.isError,
+              expression: "!validateInfor.isError"
             }
           ]
         },
-        [_vm._v("\n            " + _vm._s(_vm.error) + "\n        ")]
+        [
+          _vm._v(
+            "\n            " +
+              _vm._s(_vm.validateInfor.errors.toString()) +
+              "\n        "
+          )
+        ]
       )
     ])
   ])
@@ -8976,6 +8966,188 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-56d79cd5", esExports)
+  }
+}
+
+/***/ }),
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.isEmail = isEmail;
+exports.isShit = isShit;
+function isEmail(strEmail) {
+    //声明邮箱正则
+    var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+    //对输入的值进行判断
+    if (!myreg.test(strEmail)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+function isShit(myreg, str) {
+    //声明邮箱正则
+    //对输入的值进行判断
+    if (!myreg.test(str)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+/***/ }),
+/* 194 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var exp_length6 = exports.exp_length6 = /^\d{6,}$/;
+var exp_not_null = exports.exp_not_null = /\S/;
+var exp_email = exports.exp_email = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+var exp_num = exports.exp_num = /^[0-9]*$/;
+var exp_phone = exports.exp_phone = /^(\(\d{3,4}\)|\d{3,4}-)?\d{7,8}$/;
+// --正确格式为：XXXX-XXXXXXX，XXXX-XXXXXXXX，XXX-XXXXXXX，XXX-XXXXXXXX，XXXXXXX，XXXXXXXX。
+
+/***/ }),
+/* 195 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(196);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("e01a4b04", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/_css-loader@0.28.11@css-loader/index.js?sourceMap!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-041a2a36\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./cellGroup.vue", function() {
+     var newContent = require("!!../../../../../node_modules/_css-loader@0.28.11@css-loader/index.js?sourceMap!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-041a2a36\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./cellGroup.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 196 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(true);
+// imports
+
+
+// module
+exports.push([module.i, "\n.t-cell-group {\r\n  padding: 10px;\r\n  margin-top: 25px;\n}\n.t-cell-group-title {\r\n  font-size: 15px;\r\n  color: #ccc;\r\n  margin-bottom: 5px;\n}\n.t-cell-group .t-cell-item:last-child {\r\n  border-bottom: none;\n}\r\n", "", {"version":3,"sources":["C:/phpStudy/WWW/tai-vue-ui/application/index/view/components/cell/application/index/view/components/cell/cellGroup.vue"],"names":[],"mappings":";AAUA;EACA,cAAA;EACA,iBAAA;CACA;AACA;EACA,gBAAA;EACA,YAAA;EACA,mBAAA;CACA;AACA;EACA,oBAAA;CACA","file":"cellGroup.vue","sourcesContent":["<template>\r\n  <div class=\"t-cell-group\">\r\n    <div class=\"t-cell-group-title\">\r\n      {{$props.title}}\r\n    </div>\r\n    <slot />\r\n  </div>\r\n</template>\r\n\r\n<style>\r\n.t-cell-group {\r\n  padding: 10px;\r\n  margin-top: 25px;\r\n}\r\n.t-cell-group-title {\r\n  font-size: 15px;\r\n  color: #ccc;\r\n  margin-bottom: 5px;\r\n}\r\n.t-cell-group .t-cell-item:last-child {\r\n  border-bottom: none;\r\n}\r\n</style>\r\n\r\n<script>\r\nexport default {\r\n  name: \"t-cell-group\",\r\n  props: {\r\n    title: String\r\n  }\r\n};\r\n</script>\r\n"],"sourceRoot":""}]);
+
+// exports
+
+
+/***/ }),
+/* 197 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "t-cell-group" },
+    [
+      _c("div", { staticClass: "t-cell-group-title" }, [
+        _vm._v("\n    " + _vm._s(_vm.$props.title) + "\n  ")
+      ]),
+      _vm._v(" "),
+      _vm._t("default")
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-041a2a36", esExports)
   }
 }
 

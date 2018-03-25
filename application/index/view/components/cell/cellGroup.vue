@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<style scoped>
+<style>
 .t-cell-group {
   padding: 10px;
   margin-top: 25px;
@@ -16,6 +16,9 @@
   font-size: 15px;
   color: #ccc;
   margin-bottom: 5px;
+}
+.t-cell-group .t-cell-item:last-child {
+  border-bottom: none;
 }
 </style>
 

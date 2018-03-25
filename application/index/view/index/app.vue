@@ -73,17 +73,20 @@
             <div>等级</div>
           </t-grid-item>
           <t-grid-item>
-            <t-icon icon="lianxiangshuru" size='44' />
-            <div>输入</div>
+            <router-link to='/cell'>
+              <t-icon icon="lianxiangshuru" size='44' />
+              <div>输入</div>
+            </router-link>
+
           </t-grid-item>
-          <t-grid-item>
+        <!--   <t-grid-item>
             <t-icon icon="404" size='44' />
             <div>布局</div>
-          </t-grid-item>
+          </t-grid-item> -->
 
           <t-grid-item>
             <router-link to="/pick">
-              <t-icon icon="404" size='44' />
+              <t-icon icon="picklist" size='44' />
               <div>pick</div>
             </router-link>
           </t-grid-item>
@@ -99,7 +102,7 @@
               <div>日期时间选择</div>
             </router-link>
           </t-grid-item>
-           <t-grid-item>
+          <t-grid-item>
             <t-icon icon="LC_icon_date_line_2" size='44' />
             <router-link to="/cell">
               <div>左右布局</div>

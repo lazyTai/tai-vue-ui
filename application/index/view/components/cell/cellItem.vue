@@ -20,7 +20,8 @@
   display: flex;
   align-self: center;
   align-items: center;
-  height: 70px;
+  height: 75px;
+  border: 1px solid #eee;
   /* line-height: 45px; */
 }
 .t-cell-item .icon {

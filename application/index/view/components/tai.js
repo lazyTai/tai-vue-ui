@@ -11,6 +11,8 @@ import { DatePicker } from './datePicker/index.js'
 import { DateTimePicker } from './datetimePicker/index'
 import { Swiper } from './swiper/index'
 import { Loading } from './loading/index'
+import { CellGroup, CellItem } from './cell/index'
+import { Input, } from './input/index'
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
 }, false);
@@ -31,7 +33,10 @@ const install = function (Vue) {
     Vue.component(DateTimePicker.name, DateTimePicker);
     Vue.component(Swiper.name, Swiper);
     Vue.component(InfiniteScroll2.name, InfiniteScroll2);
+    Vue.component(CellGroup.name, CellGroup);
+    Vue.component(CellItem.name, CellItem);
     Vue.component(Loading.name, Loading);
+    Vue.component(Input.name, Input);
 
     Vue.prototype.$toast = Toast;
     Vue.prototype.$mark = Mark;

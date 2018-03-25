@@ -36,12 +36,12 @@
               <div>无限加载列表</div>
             </router-link>
           </t-grid-item>
-          <t-grid-item>
+          <!-- <t-grid-item>
             <router-link to="/nostop_list2">
               <t-icon icon="symbols" size='44' />
               <div>无限加载列表scoll</div>
             </router-link>
-          </t-grid-item>
+          </t-grid-item> -->
           <t-grid-item>
             <t-icon icon="nav" size='44' />
             <div>nav</div>
@@ -97,6 +97,12 @@
             <t-icon icon="LC_icon_date_line_2" size='44' />
             <router-link to="/datetime-picker">
               <div>日期时间选择</div>
+            </router-link>
+          </t-grid-item>
+           <t-grid-item>
+            <t-icon icon="LC_icon_date_line_2" size='44' />
+            <router-link to="/cell">
+              <div>左右布局</div>
             </router-link>
           </t-grid-item>
 

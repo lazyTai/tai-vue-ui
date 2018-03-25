@@ -47,7 +47,10 @@ const routes = [
         path: '/swiper',
         component: require('./example/swiper.vue').default
     },
-
+    {
+        path: '/cell',
+        component: require('./example/cell.vue').default
+    },
     {
         path: '/',
         redirect: '/app'

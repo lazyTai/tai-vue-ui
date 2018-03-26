@@ -4,7 +4,7 @@ import { Icon } from './icon/index.js';
 import { GridGroup, GridItem } from './grid/index.js';
 import { Button, ButtonGroup, IconButton } from './button/index.js';
 import { Toast } from './dialog/index'
-import { InfiniteScroll, InfiniteScroll2 } from './infiniteScroll/index'
+import { InfiniteScroll } from './infiniteScroll/index'
 import { Mark } from './mark/mark.js'
 import { Pick, PickItem } from './pick/pick.js'
 import { DatePicker } from './datePicker/index.js'
@@ -13,6 +13,7 @@ import { Swiper } from './swiper/index'
 import { Loading } from './loading/index'
 import { CellGroup, CellItem } from './cell/index'
 import { Input, ExpTypes } from './input/index'
+import { InfiniteScroll2 } from './infiniteScroll2/index.js'
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
 }, false);
@@ -37,6 +38,7 @@ const install = function (Vue) {
     Vue.component(CellItem.name, CellItem);
     Vue.component(Loading.name, Loading);
     Vue.component(Input.name, Input);
+    Vue.component(InfiniteScroll2.name, InfiniteScroll2);
 
     Vue.prototype.$toast = Toast;
     Vue.prototype.$mark = Mark;

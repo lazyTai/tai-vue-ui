@@ -42,6 +42,12 @@
               <div>无限加载列表scoll</div>
             </router-link>
           </t-grid-item> -->
+        <t-grid-item>
+            <router-link to="/infinitescrollist2">
+              <t-icon icon="symbols" size='44' />
+              <div>infinitescrollist2</div>
+            </router-link>
+          </t-grid-item> 
           <t-grid-item>
             <t-icon icon="nav" size='44' />
             <div>nav</div>
@@ -79,7 +85,7 @@
             </router-link>
 
           </t-grid-item>
-        <!--   <t-grid-item>
+          <!--   <t-grid-item>
             <t-icon icon="404" size='44' />
             <div>布局</div>
           </t-grid-item> -->

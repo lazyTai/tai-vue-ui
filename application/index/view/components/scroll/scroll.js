@@ -16,7 +16,8 @@ var renderUtil = require('./renderUtil.js').default
 // content.style.width = contentWidth + "px";
 // content.style.height = contentHeight + "px";
 // window.tScroll=tScroll;
-export default function tScroll(container, content, opt) {
+function tScroll(container, content, opt) {
+    var self = this;
     var scrollingX, scrollingY;
     if (opt.scrollingX === undefined) {
         scrollingX = false;
@@ -30,31 +31,36 @@ export default function tScroll(container, content, opt) {
     }
 
     var render = renderUtil(content)
-    var scroller = new Scroller(render, {
+    this.scroller = new Scroller(render, {
         zooming: true, scrollingX, scrollingY
     });
+    this.scroller.container = container
+    this.scroller.content = content
     var rect = container.getBoundingClientRect();
-    scroller.setPosition(rect.left + container.clientLeft, rect.top + container.clientTop);
+    self.scroller.setPosition(rect.left + container.clientLeft, rect.top + container.clientTop);
     if ('ontouchstart' in window) {
-        container.addEventListener("touchstart", function (e) {
+        this.touchstart = function (e) {
             // Don't react if initial down happens on a form element
             if (e.touches[0] && e.touches[0].target && e.touches[0].target.tagName.match(/input|textarea|select/i)) {
                 return;
             }
-            scroller.doTouchStart(e.touches, e.timeStamp);
-            opt.start && opt.start.call(this, scroller.getValues())
+            self.scroller.doTouchStart(e.touches, e.timeStamp);
+            opt.start && opt.start.call(this, self.scroller.getValues())
             e.preventDefault();
-        }, false);
+        }
+        container.addEventListener("touchstart", this.touchstart, false);
 
-        document.addEventListener("touchmove", function (e) {
-            scroller.doTouchMove(e.touches, e.timeStamp, e.scale);
-            opt.move && opt.move.call(this, scroller.getValues())
-        }, false);
+        this.touchmove = function (e) {
+            self.scroller.doTouchMove(e.touches, e.timeStamp, e.scale);
+            opt.move && opt.move.call(this, self.scroller.getValues())
+        }
+        document.addEventListener("touchmove", this.touchmove, false);
 
-        document.addEventListener("touchend", function (e) {
-            scroller.doTouchEnd(e.timeStamp);
-            opt.end && opt.end.call(this, scroller.getValues())
-        }, false);
+        this.touchend = function (e) {
+            self.scroller.doTouchEnd(e.timeStamp);
+            opt.end && opt.end.call(this, self.scroller.getValues())
+        }
+        document.addEventListener("touchend", this.touchend, false);
 
         // document.addEventListener("touchcancel", function (e) {
         //     opt.cancel && opt.cancel.call(this, e.touches[0])
@@ -63,44 +69,49 @@ export default function tScroll(container, content, opt) {
 
     } else {
         var mousedown = false;
-        container.addEventListener("mousedown", function (e) {
+        this.mousedown = function (e) {
             if (e.target.tagName.match(/input|textarea|select/i)) {
                 return;
             }
 
-            scroller.doTouchStart([{
+            self.scroller.doTouchStart([{
                 pageX: e.pageX,
                 pageY: e.pageY
             }], e.timeStamp);
-            opt.start && opt.start.call(this, scroller.getValues())
+            opt.start && opt.start.call(this, self.scroller.getValues())
             mousedown = true;
-        }, false);
-        document.addEventListener("mousemove", function (e) {
+        }
+        container.addEventListener("mousedown", this.mousedown, false);
+        this.mousemove = function (e) {
             if (!mousedown) {
                 return;
             }
-            scroller.doTouchMove([{
+            self.scroller.doTouchMove([{
                 pageX: e.pageX,
                 pageY: e.pageY
             }], e.timeStamp);
-            opt.move && opt.move.call(this, scroller.getValues())
+            opt.move && opt.move.call(this, self.scroller.getValues())
             mousedown = true;
-        }, false);
-        document.addEventListener("mouseup", function (e) {
+        }
+        document.addEventListener("mousemove", this.mousemove, false);
+        this.mouseup = function (e) {
             if (!mousedown) {
                 return;
             }
-            scroller.doTouchEnd(e.timeStamp);
-            opt.end && opt.end.call(this, scroller.getValues())
+            self.scroller.doTouchEnd(e.timeStamp);
+            opt.end && opt.end.call(this, self.scroller.getValues())
             mousedown = false;
-        }, false);
+        }
+        document.addEventListener("mouseup", this.mouseup, false);
+
         container.addEventListener(navigator.userAgent.indexOf("Firefox") > -1 ? "DOMMouseScroll" : "mousewheel", function (e) {
-            scroller.doMouseZoom(e.detail ? (e.detail * -120) : e.wheelDelta, e.timeStamp, e.pageX, e.pageY);
+            self.scroller.doMouseZoom(e.detail ? (e.detail * -120) : e.wheelDelta, e.timeStamp, e.pageX, e.pageY);
         }, false);
     }
 
-    return scroller;
+    return self.scroller;
 }
+export default tScroll;
 // export default ()=>{window.tScroll()};
 // var _scroller = tScroll(container, content, {
 //     start: function (values) {

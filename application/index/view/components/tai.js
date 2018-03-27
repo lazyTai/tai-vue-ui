@@ -15,11 +15,9 @@ import { CellGroup, CellItem } from './cell/index'
 import { Input, ExpTypes } from './input/index'
 import { InfiniteScroll2 } from './infiniteScroll2/index.js'
 import { InfiniteScroll3 } from './infiniteScroll3/index.js'
-import { Animate } from './animate/index.js'
+import { TAnimate } from './animate/index.js'
 
 
-import { Tweezing, tweezerHelper } from "vue-tweezing";
-import Tweezer from "tweezer.js";
 
 const install = function (Vue) {
     Vue.component(Layout.name, Layout);
@@ -42,7 +40,7 @@ const install = function (Vue) {
     Vue.component(Input.name, Input);
     Vue.component(InfiniteScroll2.name, InfiniteScroll2);
     Vue.component(InfiniteScroll3.name, InfiniteScroll3);
-    Vue.component(Animate.name, Animate);
+    Vue.component(TAnimate.name, TAnimate);
 
     Vue.prototype.$toast = Toast;
     Vue.prototype.$mark = Mark;
@@ -51,11 +49,8 @@ const install = function (Vue) {
 
 };
 
-Vue.use(Tweezing, {
-    tweezer: tweezerHelper(Tweezer)
-  });
 window.document.addEventListener('touchstart', function (event) {
-      /* Do Nothing */
+    /* Do Nothing */
 }, false);
 
 if (typeof window !== 'undefined' && window.Vue) {

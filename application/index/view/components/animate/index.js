@@ -1,4 +1,4 @@
-import Animate from './animate.vue'
+import { TAnimate } from './animate.js'
 export {
-    Animate
+    TAnimate
 }

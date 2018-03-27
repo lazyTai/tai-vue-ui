@@ -116,7 +116,7 @@
           </t-grid-item>
           <t-grid-item>
             <t-icon icon="LC_icon_date_line_2" size='44' />
-            <router-link to="/animate">
+            <router-link to="/animate1">
               <div>animate</div>
             </router-link>
           </t-grid-item>

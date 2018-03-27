@@ -56,7 +56,7 @@ const routes = [
         component: require('./example/cell.vue').default
     },
     {
-        path: '/animate',
+        path: '/animate1',
         component: require('./example/animate.vue').default
     },
     {

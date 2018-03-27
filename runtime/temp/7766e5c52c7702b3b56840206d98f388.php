@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"C:\phpStudy\WWW\tai-vue-ui\public/../application/index\view\index\index.html";i:1522156214;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"C:\phpStudy\WWW\tai-vue-ui\public/../application/index\view\index\index.html";i:1522157209;}*/ ?>
 <html lang="en">
 
 <head>
@@ -24,6 +24,7 @@
     <script src="/tai-vue-ui/public/static/js/vue.js"></script>
     <script src="/tai-vue-ui/public/static/js/ajax.js"></script>
     <script src="/tai-vue-ui/public/static/js/ajaxform.js"></script>
+    <script src="/tai-vue-ui/public/static/js/tween@16.3.js"></script>
     <!-- <script src="/tai-vue-ui/public/static/js/tv/tv.js"></script> -->
     <script src="/tai-vue-ui/public/static/js/index/index.js"></script>
     <script src="//at.alicdn.com/t/font_391938_9tuqh2ugu6h9qkt9.js"></script>

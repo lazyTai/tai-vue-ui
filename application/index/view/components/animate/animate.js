@@ -2,7 +2,7 @@ export const TAnimate = {
     name: 't-animate',
     data() {
         return {
-            animateValue: null
+            animateValue: _clone(this.$props.to)
         }
     },
     props: {
@@ -51,7 +51,6 @@ export const TAnimate = {
             TWEEN.update(time);
         }
         requestAnimationFrame(animate);
-        this.$data.animateValue = _clone(this.$props.to)
     },
     install(Vue, options = {}) {
         Vue.component('t-animate', tAnimate)

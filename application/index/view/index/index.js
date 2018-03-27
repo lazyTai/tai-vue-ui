@@ -48,12 +48,16 @@ const routes = [
         component: require('./example/swiper.vue').default
     },
     {
-        path: '/infinitescrollist2',
-        component: require('./example/InfiniteScroll2.vue').default
+        path: '/infinitescrollist3',
+        component: require('./example/InfiniteScroll3.vue').default
     },
     {
         path: '/cell',
         component: require('./example/cell.vue').default
+    },
+    {
+        path: '/animate',
+        component: require('./example/animate.vue').default
     },
     {
         path: '/',

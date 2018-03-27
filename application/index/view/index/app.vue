@@ -42,12 +42,12 @@
               <div>无限加载列表scoll</div>
             </router-link>
           </t-grid-item> -->
-        <t-grid-item>
-            <router-link to="/infinitescrollist2">
+          <t-grid-item>
+            <router-link to="/infinitescrollist3">
               <t-icon icon="symbols" size='44' />
-              <div>infinitescrollist2</div>
+              <div>infinitescrollist3</div>
             </router-link>
-          </t-grid-item> 
+          </t-grid-item>
           <t-grid-item>
             <t-icon icon="nav" size='44' />
             <div>nav</div>
@@ -112,6 +112,12 @@
             <t-icon icon="LC_icon_date_line_2" size='44' />
             <router-link to="/cell">
               <div>左右布局</div>
+            </router-link>
+          </t-grid-item>
+          <t-grid-item>
+            <t-icon icon="LC_icon_date_line_2" size='44' />
+            <router-link to="/animate">
+              <div>animate</div>
             </router-link>
           </t-grid-item>
 

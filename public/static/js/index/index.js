@@ -9460,7 +9460,17 @@ function getEvent(e) {
 } /* 
   使用
   import ScrollView from '../../src'
-  Vue.use(ScrollView) */
+  Vue.use(ScrollView) 
+  
+   <t-infinite-scroll3>
+              <template scope="scrollviewdata">
+                  {{scrollviewdata}}
+                  <div v-for="n in 100">
+                      {{n}}
+                  </div>
+              </template>
+          </t-infinite-scroll3>
+  */
 
 var ScrollView = {
     name: 't-infinite-scroll3',
@@ -9468,12 +9478,14 @@ var ScrollView = {
         return h(this.tag, {
             'class': {
                 container: true
+                // 't-infinite-scroll3': true
             },
             style: {
                 width: '100%',
                 height: '100%',
                 overflow: 'hidden',
-                userSelect: 'none'
+                userSelect: 'none',
+                boxSizing: 'border-box'
             },
             domProps: {},
             ref: 'container'
@@ -9484,7 +9496,7 @@ var ScrollView = {
             style: {
                 width: '100%',
                 height: '100%',
-                transform: 'translate3d(0,' + this.$data.animateValue.top + 'px,0)'
+                transform: 'translate3d(0,' + this.$data.scrollClientY + 'px,0)'
             },
             domProps: {},
             ref: 'content'
@@ -9496,7 +9508,6 @@ var ScrollView = {
             isOverBottom: false,
             isOverToping: false,
             isOverBottoming: false,
-            animateValue: { top: 0 },
             currentClientY: 0,
             scrollClientY: 0
         };
@@ -9508,10 +9519,6 @@ var ScrollView = {
             default: function _default() {
                 return 'div';
             }
-        },
-        top: {
-            type: Number,
-            default: 1
         }
     },
     watch: {
@@ -9519,14 +9526,12 @@ var ScrollView = {
         //     console.log("watch:top", this.$props.top)
         //     this.$data.animateValue.top = this.$props.top
         // },
-        scrollClientY: function scrollClientY() {
-            // console.log('change scrollClientY', this.$data.scrollClientY)
-            this.$data.animateValue.top = this.$data.scrollClientY;
-        }
+        // scrollClientY() {
+        //     // console.log('change scrollClientY', this.$data.scrollClientY)
+        //     // this.$data.animateValue.top = this.$data.scrollClientY
+        // }
     },
-    created: function created() {
-        this.$data.animateValue.top = this.$props.top;
-    },
+    created: function created() {},
     mounted: function mounted() {
         this.dom_container = this.$refs['container'];
         this.dom_content = this.$refs['content'];
@@ -9558,6 +9563,7 @@ var ScrollView = {
             // console.log("onmousedown", e)
         },
         onmousemove: function onmousemove(e) {
+            // console.log("getEvent(e).clientY ", getEvent(e).clientY)
             if (this.isStart) {
                 this.$data.scrollClientY += getEvent(e).clientY - this.$data.currentClientY;
                 // console.log("movetop", this.$data.scrollClientY)
@@ -9580,10 +9586,10 @@ var ScrollView = {
         },
         onmouseup: function onmouseup(e) {
             this.isStart = false;
-            // debugger
             this.$data.currentClientY = getEvent(e).clientY;
+            // - this.dom_container.offsetTop;
             /* 判断下拉到上头了 */
-            if (this.$data.scrollClientY > 0) {
+            if (this.$data.scrollClientY >= 0) {
                 /* 撤回去，使用动画效果 */
                 // console.log("到头了")
                 this.$data.isOverTop = true;
@@ -9592,6 +9598,7 @@ var ScrollView = {
             }
 
             /* 判断到底了，回撤回去 */
+            // debugger
             if (this.dom_content.offsetTop + this.dom_content.offsetHeight + Math.abs(this.scrollClientY) > this.dom_content.scrollHeight) {
                 // console.log("到底了")
                 this.$data.isOverBottom = true;
@@ -9601,7 +9608,7 @@ var ScrollView = {
         },
         setToBottom: function setToBottom() {
             var self = this;
-            var _scrollClientY = this.dom_content.scrollHeight - this.dom_content.offsetTop - this.dom_content.offsetHeight;
+            var _scrollClientY = this.dom_content.scrollHeight - this.dom_content.offsetHeight;
             var coords = { x: this.$data.scrollClientY // Start at (0, 0)
             };var tween = new TWEEN.Tween(coords) // Create a new tween that modifies 'coords'.
             .to({ x: -_scrollClientY }, 500) // Move to (300, 200) in 1 second.
@@ -9615,24 +9622,23 @@ var ScrollView = {
                 self.$data.scrollClientY = coords.x;
             }).onComplete(function () {
                 self.$data.scrollClientY = -_scrollClientY;
+                // this.$data.animateValue.top = this.$data.scrollClientY
                 self.$data.isOverBottom = false;
             }).start(); // Start the tween immediately.
         },
         setToTop: function setToTop() {
             var self = this;
-            var coords = { x: this.$data.scrollClientY // Start at (0, 0)
+            var coords = { x: self.$data.scrollClientY
+                // console.log("move", this.$data.scrollClientY)
             };var tween = new TWEEN.Tween(coords) // Create a new tween that modifies 'coords'.
             .to({ x: 0 }, 500) // Move to (300, 200) in 1 second.
             .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.
             .onUpdate(function () {
                 // Called after tween.js updates 'coords'.
-                // Move 'box' to the position described by 'coords' with a CSS translation.
-                // box.style.setProperty('transform', 'translate(' + coords.x + 'px, ' + coords.y + 'px)');
-                // console.log('update', coords)
-                // this.$data.scrollClientY=
                 self.$data.scrollClientY = coords.x;
             }).onComplete(function () {
                 self.$data.scrollClientY = 0;
+                // this.$data.animateValue.top = this.$data.scrollClientY
                 self.$data.isOverTop = false;
             }).start(); // Start the tween immediately.
         }
@@ -11514,8 +11520,22 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
-exports.default = {};
+exports.default = {
+  data: function data() {
+    return {
+      lists: [1, 2, 3, 4]
+    };
+  }
+};
 
 /***/ }),
 /* 165 */
@@ -15964,6 +15984,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_InfiniteScroll3_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_InfiniteScroll3_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_1_vue_loader_lib_template_compiler_index_id_data_v_00827223_hasScoped_false_buble_transforms_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_template_index_0_InfiniteScroll3_vue__ = __webpack_require__(207);
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(214)
+}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 
@@ -15973,7 +15997,7 @@ var normalizeComponent = __webpack_require__(0)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -16020,7 +16044,10 @@ var render = function() {
     "div",
     { staticClass: "infinitescroll3" },
     [
+      _c("t-header-back", { attrs: { title: "动画滚动--无限加载" } }),
+      _vm._v(" "),
       _c("t-infinite-scroll3", {
+        staticClass: "t-infinite-scroll3",
         scopedSlots: _vm._u([
           {
             key: "default",
@@ -16029,7 +16056,7 @@ var render = function() {
                 _vm._v(
                   "\n            " + _vm._s(scrollviewdata) + "\n            "
                 ),
-                _vm._l(100, function(n) {
+                _vm._l(_vm.lists, function(n) {
                   return _c("div", [
                     _vm._v("\n                " + _vm._s(n) + "\n            ")
                   ])
@@ -16417,6 +16444,46 @@ if (false) {
     require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-13a50452", esExports)
   }
 }
+
+/***/ }),
+/* 214 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(215);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("b61c6cf4", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/_css-loader@0.28.11@css-loader/index.js?sourceMap!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-00827223\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./InfiniteScroll3.vue", function() {
+     var newContent = require("!!../../../../../node_modules/_css-loader@0.28.11@css-loader/index.js?sourceMap!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-00827223\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./InfiniteScroll3.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 215 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(true);
+// imports
+
+
+// module
+exports.push([module.i, "\n.t-infinite-scroll3 {\r\n  max-height: 400px;\r\n  border: 1px solid;\n}\r\n", "", {"version":3,"sources":["C:/phpStudy/WWW/tai-vue-ui/application/index/view/index/example/application/index/view/index/example/InfiniteScroll3.vue"],"names":[],"mappings":";AAeA;EACA,kBAAA;EACA,kBAAA;CACA","file":"InfiniteScroll3.vue","sourcesContent":["<template>\r\n    <div class=\"infinitescroll3\">\r\n        <t-header-back title=\"动画滚动--无限加载\"></t-header-back>\r\n        <t-infinite-scroll3 class=\"t-infinite-scroll3\">\r\n            <template scope=\"scrollviewdata\">\r\n                {{scrollviewdata}}\r\n                <div v-for=\"n in lists\">\r\n                    {{n}}\r\n                </div>\r\n            </template>\r\n        </t-infinite-scroll3>\r\n    </div>\r\n\r\n</template>\r\n<style>\r\n.t-infinite-scroll3 {\r\n  max-height: 400px;\r\n  border: 1px solid;\r\n}\r\n</style>\r\n\r\n<script>\r\nexport default {\r\n  data() {\r\n    return {\r\n      lists: [1, 2, 3, 4]\r\n    };\r\n  }\r\n};\r\n</script>"],"sourceRoot":""}]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

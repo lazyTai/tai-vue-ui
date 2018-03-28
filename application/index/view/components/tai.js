@@ -3,7 +3,7 @@ import { HeaderBack } from './header/index.js';
 import { Icon } from './icon/index.js';
 import { GridGroup, GridItem } from './grid/index.js';
 import { Button, ButtonGroup, IconButton } from './button/index.js';
-import { Toast } from './dialog/index'
+import { Toast,Loadding } from './dialog/index'
 import { InfiniteScroll } from './infiniteScroll/index'
 import { Mark } from './mark/mark.js'
 import { Pick, PickItem } from './pick/pick.js'
@@ -43,6 +43,7 @@ const install = function (Vue) {
     Vue.component(TAnimate.name, TAnimate);
 
     Vue.prototype.$toast = Toast;
+    Vue.prototype.$loadding = Loadding;
     Vue.prototype.$mark = Mark;
     Vue.prototype.$expTypes = ExpTypes;
 

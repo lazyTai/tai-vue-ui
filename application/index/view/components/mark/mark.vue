@@ -19,8 +19,9 @@ export default {
   width: 100%;
   height: 100%;
   z-index: 98;
-  background: #333;
-  opacity: 0.5;
+  background: #222;
+  color: #fff;
+  opacity: 0;
   bottom: 0;
 }
 </style>

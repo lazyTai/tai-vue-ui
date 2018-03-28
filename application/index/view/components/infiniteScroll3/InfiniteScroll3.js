@@ -114,12 +114,15 @@ var ScrollView = {
     },
     methods: {
         onmousedown(e) {
+            if (this.$data.isOverBottom || this.$data.isOverTop) return false;
             this.isStart = true;
             this.$data.currentClientY = getEvent(e).clientY;
             // console.log("onmousedown", e)
         },
         onmousemove(e) {
-            // console.log("getEvent(e).clientY ", getEvent(e).clientY)
+            /*  
+            只有在加载完成之后，才能拉*/
+            if (this.$data.isOverBottom || this.$data.isOverTop) return false;
             if (this.isStart) {
                 this.$data.scrollClientY += getEvent(e).clientY - this.$data.currentClientY;
                 // console.log("movetop", this.$data.scrollClientY)
@@ -141,6 +144,7 @@ var ScrollView = {
             }
         },
         onmouseup(e) {
+            if (this.$data.isOverBottom || this.$data.isOverTop) return false;
             this.isStart = false;
             this.$data.currentClientY = getEvent(e).clientY;
             // - this.dom_container.offsetTop;
@@ -150,6 +154,7 @@ var ScrollView = {
                 // console.log("到头了")
                 this.$data.isOverTop = true;
                 this.$data.isOverToping = false
+                this.$emit('callbackTop', this.$data)
                 this.setToTop()
             }
 
@@ -159,6 +164,7 @@ var ScrollView = {
                 // console.log("到底了")
                 this.$data.isOverBottom = true
                 this.$data.isOverBottoming = false
+                this.$emit('callbackBottom', this.$data)
                 this.setToBottom()
             }
 

@@ -3786,9 +3786,11 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
 
 exports.default = {
-  name: "t-loading",
+  name: "t-loadding",
   props: {
     loading: Boolean
   },
@@ -4238,6 +4240,7 @@ var install = function install(Vue) {
     Vue.component(_index15.TAnimate.name, _index15.TAnimate);
 
     Vue.prototype.$toast = _index5.Toast;
+    Vue.prototype.$loadding = _index5.Loadding;
     Vue.prototype.$mark = _mark.Mark;
     Vue.prototype.$expTypes = _index12.ExpTypes;
 };
@@ -5383,11 +5386,14 @@ if (false) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.Toast = undefined;
+exports.Loadding = exports.Toast = undefined;
 
 var _toast = __webpack_require__(69);
 
+var _loadding = __webpack_require__(217);
+
 exports.Toast = _toast.Toast;
+exports.Loadding = _loadding.Loadding;
 
 /***/ }),
 /* 69 */
@@ -7655,7 +7661,7 @@ exports = module.exports = __webpack_require__(1)(true);
 
 
 // module
-exports.push([module.i, "\n.t-mark[data-v-09367959] {\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n  z-index: 98;\r\n  background: #333;\r\n  opacity: 0.5;\r\n  bottom: 0;\n}\r\n", "", {"version":3,"sources":["C:/phpStudy/WWW/tai-vue-ui/application/index/view/components/mark/application/index/view/components/mark/mark.vue"],"names":[],"mappings":";AAgBA;EACA,mBAAA;EACA,YAAA;EACA,aAAA;EACA,YAAA;EACA,iBAAA;EACA,aAAA;EACA,UAAA;CACA","file":"mark.vue","sourcesContent":["<template>\r\n  <div class=\"t-mark\" :show=\"show\">\r\n  </div>\r\n</template>\r\n<script>\r\nexport default {\r\n  data() {\r\n    return {};\r\n  },\r\n  props: {\r\n    show: Boolean\r\n  },\r\n  created() {}\r\n};\r\n</script>\r\n<style scoped>\r\n.t-mark {\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n  z-index: 98;\r\n  background: #333;\r\n  opacity: 0.5;\r\n  bottom: 0;\r\n}\r\n</style>\r\n\r\n"],"sourceRoot":""}]);
+exports.push([module.i, "\n.t-mark[data-v-09367959] {\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n  z-index: 98;\r\n  background: #222;\r\n  color: #fff;\r\n  opacity: 0;\r\n  bottom: 0;\n}\r\n", "", {"version":3,"sources":["C:/phpStudy/WWW/tai-vue-ui/application/index/view/components/mark/application/index/view/components/mark/mark.vue"],"names":[],"mappings":";AAgBA;EACA,mBAAA;EACA,YAAA;EACA,aAAA;EACA,YAAA;EACA,iBAAA;EACA,YAAA;EACA,WAAA;EACA,UAAA;CACA","file":"mark.vue","sourcesContent":["<template>\r\n  <div class=\"t-mark\" :show=\"show\">\r\n  </div>\r\n</template>\r\n<script>\r\nexport default {\r\n  data() {\r\n    return {};\r\n  },\r\n  props: {\r\n    show: Boolean\r\n  },\r\n  created() {}\r\n};\r\n</script>\r\n<style scoped>\r\n.t-mark {\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 100%;\r\n  z-index: 98;\r\n  background: #222;\r\n  color: #fff;\r\n  opacity: 0;\r\n  bottom: 0;\r\n}\r\n</style>\r\n\r\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -8684,7 +8690,7 @@ exports = module.exports = __webpack_require__(1)(true);
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active,\r\n.fade-leave-active {\r\n  -webkit-transition: opacity 0.5s;\r\n  transition: opacity 0.5s;\n}\n.fade-enter,\r\n.fade-leave-to {\r\n  opacity: 0;\n}\n.tai_loading {\r\n  width: 100%;\r\n  height: 50px;\r\n  background: #fff;\r\n  font-size: 22px;\r\n  text-align: center;\n}\r\n", "", {"version":3,"sources":["C:/phpStudy/WWW/tai-vue-ui/application/index/view/components/loading/application/index/view/components/loading/loading.vue"],"names":[],"mappings":";AAiBA;;EAEA,iCAAA;EAAA,yBAAA;CACA;AACA;;EAEA,WAAA;CACA;AACA;EACA,YAAA;EACA,aAAA;EACA,iBAAA;EACA,gBAAA;EACA,mBAAA;CACA","file":"loading.vue","sourcesContent":["<template>\r\n  <div class=\"tai_loading\" v-show=\"loading\">\r\n    <t-icon icon=\"loading\"></t-icon>\r\n    <slot />\r\n  </div>\r\n</template>\r\n\r\n<script>\r\nexport default {\r\n  name: \"t-loading\",\r\n  props: {\r\n    loading: Boolean\r\n  },\r\n  created() {}\r\n};\r\n</script>\r\n<style>\r\n.fade-enter-active,\r\n.fade-leave-active {\r\n  transition: opacity 0.5s;\r\n}\r\n.fade-enter,\r\n.fade-leave-to {\r\n  opacity: 0;\r\n}\r\n.tai_loading {\r\n  width: 100%;\r\n  height: 50px;\r\n  background: #fff;\r\n  font-size: 22px;\r\n  text-align: center;\r\n}\r\n</style>\r\n"],"sourceRoot":""}]);
+exports.push([module.i, "\n.fade-enter-active,\r\n.fade-leave-active {\r\n  -webkit-transition: opacity 0.5s;\r\n  transition: opacity 0.5s;\n}\n.fade-enter,\r\n.fade-leave-to {\r\n  opacity: 0;\n}\n.tai_loading {\r\n  width: 100%;\r\n  height: 50px;\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  background: #fff;\r\n  font-size: 22px;\r\n  text-align: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-justify-content: center;\r\n          justify-content: center;\n}\n.tai_loading .content {\r\n  padding-left: 10px;\n}\r\n", "", {"version":3,"sources":["C:/phpStudy/WWW/tai-vue-ui/application/index/view/components/loading/application/index/view/components/loading/loading.vue"],"names":[],"mappings":";AAmBA;;EAEA,iCAAA;EAAA,yBAAA;CACA;AACA;;EAEA,WAAA;CACA;AACA;EACA,YAAA;EACA,aAAA;EACA,qBAAA;EAAA,sBAAA;EAAA,cAAA;EACA,iBAAA;EACA,gBAAA;EACA,mBAAA;EACA,yBAAA;EAAA,gCAAA;UAAA,wBAAA;CACA;AACA;EACA,mBAAA;CACA","file":"loading.vue","sourcesContent":["<template>\r\n  <div class=\"tai_loading\" v-show=\"loading\">\r\n    <t-icon icon=\"loading\"></t-icon>\r\n    <div class=\"content\">\r\n      <slot />\r\n    </div>\r\n  </div>\r\n</template>\r\n\r\n<script>\r\nexport default {\r\n  name: \"t-loadding\",\r\n  props: {\r\n    loading: Boolean\r\n  },\r\n  created() {}\r\n};\r\n</script>\r\n<style>\r\n.fade-enter-active,\r\n.fade-leave-active {\r\n  transition: opacity 0.5s;\r\n}\r\n.fade-enter,\r\n.fade-leave-to {\r\n  opacity: 0;\r\n}\r\n.tai_loading {\r\n  width: 100%;\r\n  height: 50px;\r\n  display: flex;\r\n  background: #fff;\r\n  font-size: 22px;\r\n  text-align: center;\r\n  justify-content: center;\r\n}\r\n.tai_loading .content {\r\n  padding-left: 10px;\r\n}\r\n</style>\r\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -8714,9 +8720,9 @@ var render = function() {
     [
       _c("t-icon", { attrs: { icon: "loading" } }),
       _vm._v(" "),
-      _vm._t("default")
+      _c("div", { staticClass: "content" }, [_vm._t("default")], 2)
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
@@ -9558,12 +9564,15 @@ var ScrollView = {
 
     methods: {
         onmousedown: function onmousedown(e) {
+            if (this.$data.isOverBottom || this.$data.isOverTop) return false;
             this.isStart = true;
             this.$data.currentClientY = getEvent(e).clientY;
             // console.log("onmousedown", e)
         },
         onmousemove: function onmousemove(e) {
-            // console.log("getEvent(e).clientY ", getEvent(e).clientY)
+            /*  
+            只有在加载完成之后，才能拉*/
+            if (this.$data.isOverBottom || this.$data.isOverTop) return false;
             if (this.isStart) {
                 this.$data.scrollClientY += getEvent(e).clientY - this.$data.currentClientY;
                 // console.log("movetop", this.$data.scrollClientY)
@@ -9585,6 +9594,7 @@ var ScrollView = {
             }
         },
         onmouseup: function onmouseup(e) {
+            if (this.$data.isOverBottom || this.$data.isOverTop) return false;
             this.isStart = false;
             this.$data.currentClientY = getEvent(e).clientY;
             // - this.dom_container.offsetTop;
@@ -9594,6 +9604,7 @@ var ScrollView = {
                 // console.log("到头了")
                 this.$data.isOverTop = true;
                 this.$data.isOverToping = false;
+                this.$emit('callbackTop', this.$data);
                 this.setToTop();
             }
 
@@ -9603,6 +9614,7 @@ var ScrollView = {
                 // console.log("到底了")
                 this.$data.isOverBottom = true;
                 this.$data.isOverBottoming = false;
+                this.$emit('callbackBottom', this.$data);
                 this.setToBottom();
             }
         },
@@ -11528,12 +11540,43 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
   data: function data() {
     return {
       lists: [1, 2, 3, 4]
     };
+  },
+
+  methods: {
+    callbackTop: function callbackTop(data) {
+      var self = this;
+      var _array = [];
+      for (var i = self.$data.lists[0]; i > self.$data.lists[0] - 10; i--) {
+        _array.push(i);
+      }
+      self.$data.lists = _array.concat(self.$data.lists);
+    },
+    callbackBottom: function callbackBottom(data) {
+      var self = this;
+      var _array = [];
+      for (var i = self.$data.lists[self.$data.lists.length - 1]; i < self.$data.lists[self.$data.lists.length - 1] + 3; i++) {
+        _array.push(i + 1);
+      }
+      this.$loadding({ mes: "锁屏加载ing" });
+      setTimeout(function () {
+        self.$data.lists = self.$data.lists.concat(_array);
+      }, 1000);
+    }
   }
 };
 
@@ -16048,19 +16091,82 @@ var render = function() {
       _vm._v(" "),
       _c("t-infinite-scroll3", {
         staticClass: "t-infinite-scroll3",
+        on: {
+          callbackTop: _vm.callbackTop,
+          callbackBottom: _vm.callbackBottom
+        },
         scopedSlots: _vm._u([
           {
             key: "default",
             fn: function(scrollviewdata) {
               return [
+                _c(
+                  "t-loadding",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: scrollviewdata.isOverToping,
+                        expression: "scrollviewdata.isOverToping"
+                      }
+                    ]
+                  },
+                  [_vm._v("拉取获取数据")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "t-loadding",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: scrollviewdata.isOverTop,
+                        expression: "scrollviewdata.isOverTop"
+                      }
+                    ]
+                  },
+                  [_vm._v("加载ing...")]
+                ),
                 _vm._v(
                   "\n            " + _vm._s(scrollviewdata) + "\n            "
                 ),
                 _vm._l(_vm.lists, function(n) {
-                  return _c("div", [
+                  return _c("div", { staticClass: "item" }, [
                     _vm._v("\n                " + _vm._s(n) + "\n            ")
                   ])
-                })
+                }),
+                _vm._v(" "),
+                _c(
+                  "t-loadding",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: scrollviewdata.isOverBottoming,
+                        expression: "scrollviewdata.isOverBottoming"
+                      }
+                    ]
+                  },
+                  [_vm._v("拉取获取数据")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "t-loadding",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: scrollviewdata.isOverBottom,
+                        expression: "scrollviewdata.isOverBottom"
+                      }
+                    ]
+                  },
+                  [_vm._v("加载ing...")]
+                )
               ]
             }
           }
@@ -16480,10 +16586,213 @@ exports = module.exports = __webpack_require__(1)(true);
 
 
 // module
-exports.push([module.i, "\n.t-infinite-scroll3 {\r\n  max-height: 400px;\r\n  border: 1px solid;\n}\r\n", "", {"version":3,"sources":["C:/phpStudy/WWW/tai-vue-ui/application/index/view/index/example/application/index/view/index/example/InfiniteScroll3.vue"],"names":[],"mappings":";AAeA;EACA,kBAAA;EACA,kBAAA;CACA","file":"InfiniteScroll3.vue","sourcesContent":["<template>\r\n    <div class=\"infinitescroll3\">\r\n        <t-header-back title=\"动画滚动--无限加载\"></t-header-back>\r\n        <t-infinite-scroll3 class=\"t-infinite-scroll3\">\r\n            <template scope=\"scrollviewdata\">\r\n                {{scrollviewdata}}\r\n                <div v-for=\"n in lists\">\r\n                    {{n}}\r\n                </div>\r\n            </template>\r\n        </t-infinite-scroll3>\r\n    </div>\r\n\r\n</template>\r\n<style>\r\n.t-infinite-scroll3 {\r\n  max-height: 400px;\r\n  border: 1px solid;\r\n}\r\n</style>\r\n\r\n<script>\r\nexport default {\r\n  data() {\r\n    return {\r\n      lists: [1, 2, 3, 4]\r\n    };\r\n  }\r\n};\r\n</script>"],"sourceRoot":""}]);
+exports.push([module.i, "\n.t-infinite-scroll3 {\r\n  max-height: 400px;\r\n  border: 1px solid;\r\n  box-sizing: border-box;\n}\n.t-infinite-scroll3 .item {\r\n  height: 100px;\r\n  border: 1px salmon solid;\n}\r\n", "", {"version":3,"sources":["C:/phpStudy/WWW/tai-vue-ui/application/index/view/index/example/application/index/view/index/example/InfiniteScroll3.vue"],"names":[],"mappings":";AAmBA;EACA,kBAAA;EACA,kBAAA;EACA,uBAAA;CACA;AACA;EACA,cAAA;EACA,yBAAA;CACA","file":"InfiniteScroll3.vue","sourcesContent":["<template>\r\n    <div class=\"infinitescroll3\">\r\n        <t-header-back title=\"动画滚动--无限加载\"></t-header-back>\r\n        <t-infinite-scroll3 class=\"t-infinite-scroll3\" @callbackTop=\"callbackTop\" @callbackBottom=\"callbackBottom\">\r\n            <template scope=\"scrollviewdata\">\r\n                <t-loadding v-show=\"scrollviewdata.isOverToping\">拉取获取数据</t-loadding>\r\n                <t-loadding v-show=\"scrollviewdata.isOverTop\">加载ing...</t-loadding>\r\n                {{scrollviewdata}}\r\n                <div v-for=\"n in lists\" class=\"item\">\r\n                    {{n}}\r\n                </div>\r\n                <t-loadding v-show=\"scrollviewdata.isOverBottoming\">拉取获取数据</t-loadding>\r\n                <t-loadding v-show=\"scrollviewdata.isOverBottom\">加载ing...</t-loadding>\r\n            </template>\r\n        </t-infinite-scroll3>\r\n    </div>\r\n\r\n</template>\r\n<style>\r\n.t-infinite-scroll3 {\r\n  max-height: 400px;\r\n  border: 1px solid;\r\n  box-sizing: border-box;\r\n}\r\n.t-infinite-scroll3 .item {\r\n  height: 100px;\r\n  border: 1px salmon solid;\r\n}\r\n</style>\r\n\r\n<script>\r\nexport default {\r\n  data() {\r\n    return {\r\n      lists: [1, 2, 3, 4]\r\n    };\r\n  },\r\n  methods: {\r\n    callbackTop(data) {\r\n      var self = this;\r\n      var _array = [];\r\n      for (var i = self.$data.lists[0]; i > self.$data.lists[0] - 10; i--) {\r\n        _array.push(i);\r\n      }\r\n      self.$data.lists = _array.concat(self.$data.lists);\r\n    },\r\n    callbackBottom(data) {\r\n      var self = this;\r\n      var _array = [];\r\n      for (\r\n        var i = self.$data.lists[self.$data.lists.length - 1];\r\n        i < self.$data.lists[self.$data.lists.length - 1] + 3;\r\n        i++\r\n      ) {\r\n        _array.push(i + 1);\r\n      }\r\n      this.$loadding({ mes: \"锁屏加载ing\" });\r\n      setTimeout(() => {\r\n        self.$data.lists = self.$data.lists.concat(_array);\r\n      }, 1000);\r\n    }\r\n  }\r\n};\r\n</script>"],"sourceRoot":""}]);
 
 // exports
 
+
+/***/ }),
+/* 216 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _mark = __webpack_require__(6);
+
+exports.default = {
+  props: {
+    mes: String
+  },
+  mounted: function mounted() {
+    this.$mark = (0, _mark.Mark)(true);
+  },
+  destroyed: function destroyed() {
+    this.$mark.closeMark();
+  }
+}; //
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+/* 217 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Loadding = Loadding;
+
+var _vue = __webpack_require__(4);
+
+var _vue2 = _interopRequireDefault(_vue);
+
+var _loadding = __webpack_require__(218);
+
+var _loadding2 = _interopRequireDefault(_loadding);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* 使用
+Loading({mes:'ad',time:100})
+*/
+var LoadingConstructor = _vue2.default.extend(_loadding2.default);
+
+function Loadding() {
+    var opt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    LoadingConstructor.prototype.close = function () {
+        var el = instance.$el;
+        this.$mark && this.$mark.closeMark();
+        el.parentNode && el.parentNode.removeChild(el);
+        typeof this.callback === 'function' && this.callback();
+    };
+    var instance = new LoadingConstructor({
+        el: document.createElement('div')
+    });
+    instance.callback = opt.callback;
+    instance.mes = opt.mes;
+    document.body.appendChild(instance.$el);
+    setTimeout(function () {
+        instance.close();
+    }, opt.time || 1000);
+    return instance.$el;
+}
+
+/***/ }),
+/* 218 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_loadding_vue__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_loadding_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_loadding_vue__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_loadding_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_loadding_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_1_vue_loader_lib_template_compiler_index_id_data_v_38a784fb_hasScoped_false_buble_transforms_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_template_index_0_loadding_vue__ = __webpack_require__(221);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(219)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_script_index_0_loadding_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_13_7_1_vue_loader_lib_template_compiler_index_id_data_v_38a784fb_hasScoped_false_buble_transforms_node_modules_vue_loader_13_7_1_vue_loader_lib_selector_type_template_index_0_loadding_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "application\\index\\view\\components\\dialog\\loadding\\loadding.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-38a784fb", Component.options)
+  } else {
+    hotAPI.reload("data-v-38a784fb", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 219 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(220);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("fc7be168", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/_css-loader@0.28.11@css-loader/index.js?sourceMap!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-38a784fb\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./loadding.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/_css-loader@0.28.11@css-loader/index.js?sourceMap!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-38a784fb\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/_vue-loader@13.7.1@vue-loader/lib/selector.js?type=styles&index=0!./loadding.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 220 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(true);
+// imports
+
+
+// module
+exports.push([module.i, "\n.t-loadding {\r\n  position: absolute;\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  width: 100%;\r\n  -webkit-box-pack: center;\r\n  -webkit-justify-content: center;\r\n          justify-content: center;\r\n  /* background: #333; */\r\n  padding: 15px;\r\n  color: #fff;\r\n  border-radius: 3px;\r\n  text-align: center;\r\n  z-index: 99;\n}\n.slider-enter-active,\r\n.slider-leave-active {\r\n  -webkit-transition: all 1s;\r\n  transition: all 1s;\n}\n.slider-enter,\r\n.slider-leave {\r\n  opacity: 0;\n}\r\n", "", {"version":3,"sources":["C:/phpStudy/WWW/tai-vue-ui/application/index/view/components/dialog/loadding/application/index/view/components/dialog/loadding/loadding.vue"],"names":[],"mappings":";AAsBA;EACA,mBAAA;EACA,qBAAA;EAAA,sBAAA;EAAA,cAAA;EACA,YAAA;EACA,yBAAA;EAAA,gCAAA;UAAA,wBAAA;EACA,uBAAA;EACA,cAAA;EACA,YAAA;EACA,mBAAA;EACA,mBAAA;EACA,YAAA;CACA;AACA;;EAEA,2BAAA;EAAA,mBAAA;CACA;AACA;;EAEA,WAAA;CACA","file":"loadding.vue","sourcesContent":["<template>\r\n  <transition name=\"slider\">\r\n    <div class=\"t-loadding\">\r\n      {{mes}}\r\n    </div>\r\n  </transition>\r\n</template>\r\n<script>\r\nimport { Mark } from \"../../mark/mark.js\";\r\nexport default {\r\n  props: {\r\n    mes: String\r\n  },\r\n  mounted() {\r\n    this.$mark = Mark(true);\r\n  },\r\n  destroyed() {\r\n    this.$mark.closeMark();\r\n  }\r\n};\r\n</script>\r\n<style>\r\n.t-loadding {\r\n  position: absolute;\r\n  display: flex;\r\n  width: 100%;\r\n  justify-content: center;\r\n  /* background: #333; */\r\n  padding: 15px;\r\n  color: #fff;\r\n  border-radius: 3px;\r\n  text-align: center;\r\n  z-index: 99;\r\n}\r\n.slider-enter-active,\r\n.slider-leave-active {\r\n  transition: all 1s;\r\n}\r\n.slider-enter,\r\n.slider-leave {\r\n  opacity: 0;\r\n}\r\n</style>\r\n"],"sourceRoot":""}]);
+
+// exports
+
+
+/***/ }),
+/* 221 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("transition", { attrs: { name: "slider" } }, [
+    _c("div", { staticClass: "t-loadding" }, [
+      _vm._v("\n    " + _vm._s(_vm.mes) + "\n  ")
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-38a784fb", esExports)
+  }
+}
 
 /***/ })
 /******/ ]);

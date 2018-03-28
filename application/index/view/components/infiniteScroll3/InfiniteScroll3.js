@@ -2,7 +2,16 @@
 使用
 import ScrollView from '../../src'
 Vue.use(ScrollView) */
-import _ from 'underscore'
+import _ from 'underscore';
+function getEvent(e) {
+    if (e.touches > 0) {
+        return e.touches[0]
+    }
+    if (e.changedTouches) {
+        return e.changedTouches[0]
+    }
+    return e
+}
 var ScrollView = {
     name: 't-infinite-scroll3',
     render(h) {
@@ -81,6 +90,13 @@ var ScrollView = {
         this.dom_container.addEventListener('mouseup', this.onmouseup)
         this.dom_container.addEventListener('mouseleave', this.onmouseup)
 
+        this.dom_container.addEventListener('touchstart', this.onmousedown)
+        // this.dom_container.addEventListener('mousemove', _.throttle(this.onmousemove, 300))
+        this.dom_container.addEventListener('touchmove', (this.onmousemove))
+        this.dom_container.addEventListener('touchend', this.onmouseup)
+        this.dom_container.addEventListener('touchleave', this.onmouseup)
+
+
 
         /* 最开始初始化动画 */
         function animate(time) {
@@ -93,14 +109,14 @@ var ScrollView = {
     methods: {
         onmousedown(e) {
             this.isStart = true;
-            this.$data.currentClientY = e.clientY;
+            this.$data.currentClientY = getEvent(e).clientY;
             // console.log("onmousedown", e)
         },
         onmousemove(e) {
             if (this.isStart) {
-                this.$data.scrollClientY += e.clientY - this.$data.currentClientY;
+                this.$data.scrollClientY += getEvent(e).clientY - this.$data.currentClientY;
                 // console.log("movetop", this.$data.scrollClientY)
-                this.$data.currentClientY = e.clientY;
+                this.$data.currentClientY = getEvent(e).clientY;
                 // console.log('move')
                 // console.log("this.dom_content.offsetTop", this.dom_content.offsetTop)
                 // console.log("this.dom_content.offsetHeight", this.dom_content.offsetHeight)
@@ -119,7 +135,8 @@ var ScrollView = {
         },
         onmouseup(e) {
             this.isStart = false;
-            this.$data.currentClientY = e.clientY;
+            // debugger
+            this.$data.currentClientY = getEvent(e).clientY;
             /* 判断下拉到上头了 */
             if (this.$data.scrollClientY > 0) {
                 /* 撤回去，使用动画效果 */
